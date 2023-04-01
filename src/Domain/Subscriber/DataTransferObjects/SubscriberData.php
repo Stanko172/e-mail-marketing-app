@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Domain\Subscriber\DataTransferObjects;
 
-use Domain\Subscriber\DataTransferObjects\FormData;
-use Domain\Subscriber\DataTransferObjects\TagData;
 use Domain\Subscriber\Models\Form;
 use Domain\Subscriber\Models\Tag;
 use Illuminate\Support\Facades\Request;
@@ -50,7 +48,7 @@ class SubscriberData extends Data
             ),
             'form' => FormD::from(
                 Form::findOrNew($request->input('form_id')),
-            )
+            ),
         ]);
     }
 }

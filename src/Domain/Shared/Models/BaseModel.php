@@ -7,16 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 abstract class BaseModel extends Model
 {
-  use HasFactory;
+    use HasFactory;
 
-  protected static function newFactory()
-  {
-    $parts = str(get_called_class())->explode("\\");
-    $domain = $parts[1];
-    $model = $parts->last();
+    protected static function newFactory()
+    {
+        $parts = str(get_called_class())->explode('\\');
+        $domain = $parts[1];
+        $model = $parts->last();
 
-    return app(
-      "Database\\Factories\\{$domain}\\{$model}Factory",
-    );
-  }
+        return app(
+            "Database\\Factories\\{$domain}\\{$model}Factory",
+        );
+    }
 }

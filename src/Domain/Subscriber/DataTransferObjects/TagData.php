@@ -14,15 +14,16 @@ class TagData extends Data
         public readonly string $title,
         /** @var DataCollection<SubscriberData> */
         public readonly null|Lazy|DataCollection $subscribers,
-    ) {}
+    ) {
+    }
 
     public static function fromModel(Tag $tag): self
     {
         return self::from([
             ...$tag->toArray(),
             'tags' => Lazy::whenLoaded(
-              'subscribers',
-              $tag, fn () => TagData::collection($tag->subscribers)
+                'subscribers',
+                $tag, fn () => TagData::collection($tag->subscribers)
             ),
         ]);
     }
