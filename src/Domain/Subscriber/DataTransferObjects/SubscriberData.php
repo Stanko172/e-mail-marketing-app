@@ -46,7 +46,7 @@ class SubscriberData extends Data
             'tags' => TagData::from(
                 Tag::whereIn('id', $request->collect('tag_ids'))->get(),
             ),
-            'form' => FormD::from(
+            'form' => FormData::from(
                 Form::findOrNew($request->input('form_id')),
             ),
         ]);
