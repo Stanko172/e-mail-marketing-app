@@ -15,35 +15,35 @@ use Illuminate\Support\Collection;
 
 class UpsertSubscriberViewModel extends ViewModel
 {
-  public function __construct(
+    public function __construct(
     public readonly ?Subscriber $subscriber = null,
-  ) { 
-  }
-
-  public function subscriber(): ?SubscriberData
-  {
-    if(! $this->subscriber) {
-      return null;
+  ) {
     }
 
-    return SubscriberData::from(
-      $this->subscriber->load('tags', 'form'),
-    );
-  }
+    public function subscriber(): ?SubscriberData
+    {
+        if (! $this->subscriber) {
+            return null;
+        }
 
-  /**
-   * @return Collection<TagData>
-   */
-  public function tags(): Collection
-  {
-    return Tag::all()->map(fn (Tag $tag) => TagData::from($tag));
-  }
+        return SubscriberData::from(
+            $this->subscriber->load('tags', 'form'),
+        );
+    }
 
-  /**
-   * @return Collection<FormData>
-   */
-  public function forms(): Collection
-  {
-    return Form::all()->map(fn (Form $tag) => FormData::from($tag));
-  }
+    /**
+     * @return Collection<TagData>
+     */
+    public function tags(): Collection
+    {
+        return Tag::all()->map(fn (Tag $tag) => TagData::from($tag));
+    }
+
+    /**
+     * @return Collection<FormData>
+     */
+    public function forms(): Collection
+    {
+        return Form::all()->map(fn (Form $tag) => FormData::from($tag));
+    }
 }
