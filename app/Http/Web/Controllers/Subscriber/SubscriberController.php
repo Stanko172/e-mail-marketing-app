@@ -18,11 +18,12 @@ class SubscriberController
 {
     public function index(Request $request): Response
     {
-        return Inertia::render('Subscriber/List', [
-            'model' => new GetSubscribersViewModel(
+        return Inertia::render(
+            'Subscriber/List',
+            new GetSubscribersViewModel(
                 $request->get('per_page', 1)
             ),
-        ]);
+        );
     }
 
     public function create(Request $request): Response
