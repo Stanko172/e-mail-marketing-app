@@ -27,4 +27,9 @@ export default defineConfig({
             },
         }),
     ],
+    resolve: {
+        alias: {
+            "@app": "/resources/ts",
+        },
+    },
 });
