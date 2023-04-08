@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Validation\Rule;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\DataCollection;
+use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
+#[TypeScript]
 class SubscriberData extends Data
 {
     public function __construct(
@@ -30,7 +32,8 @@ class SubscriberData extends Data
             'email' => [
                 'required',
                 'email',
-                Rule::unique('subscribers', 'email')->ignore(request('subscriber')),
+                Rule::unique('subscribers', 'email')
+                    ->ignore(request('subscriber')),
             ],
             'first_name' => ['required', 'string'],
             'last_name' => ['nullable', 'sometimes', 'string'],

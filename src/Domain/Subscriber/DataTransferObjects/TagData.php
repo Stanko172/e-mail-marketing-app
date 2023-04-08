@@ -6,7 +6,9 @@ use Domain\Subscriber\Models\Tag;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\DataCollection;
 use Spatie\LaravelData\Lazy;
+use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
+#[TypeScript]
 class TagData extends Data
 {
     public function __construct(
