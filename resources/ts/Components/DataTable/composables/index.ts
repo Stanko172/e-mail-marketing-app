@@ -1,0 +1,1 @@
+export { useGenericDataTable } from './useGenericDataTable';
