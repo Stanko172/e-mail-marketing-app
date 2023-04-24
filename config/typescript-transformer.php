@@ -27,6 +27,7 @@ return [
      */
 
     'transformers' => [
+        App\Infrastructure\ViewModelTransformer::class,
         Spatie\LaravelData\Support\TypeScriptTransformer\DataTypeScriptTransformer::class,
         Spatie\LaravelTypeScriptTransformer\Transformers\SpatieStateTransformer::class,
         Spatie\TypeScriptTransformer\Transformers\DtoTransformer::class,
