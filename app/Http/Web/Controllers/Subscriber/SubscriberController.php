@@ -20,9 +20,11 @@ class SubscriberController
     {
         return Inertia::render(
             'Subscriber/List',
-            new GetSubscribersViewModel(
-                $request->get('per_page', 1)
-            ),
+            [
+                'model' => new GetSubscribersViewModel(
+                    $request->get('per_page', 1)
+                ),
+            ],
         );
     }
 

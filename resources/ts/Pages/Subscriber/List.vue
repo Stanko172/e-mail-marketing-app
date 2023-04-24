@@ -1,6 +1,12 @@
 <script lang="ts" setup>
 import AppLayout from '../../Layouts/AppLayout.vue';
 import { useGenericDataTable, type DataTableHeading } from '@app/Components';
+import * as Types from '@app/types/generated';
+
+type GetSubscribersViewModel =
+    Types.Domain.Subscriber.ViewModels.GetSubscribersViewModel;
+
+defineProps<{ model: GetSubscribersViewModel }>();
 
 interface User {
     first_name: string;
@@ -40,6 +46,7 @@ const items: Array<User> = [
 
 <template>
     <AppLayout>
+        <pre>{{ model }}</pre>
         <UserDataTable :headings="headings" :items="items">
             <template #email="{ item }"> test: {{ item.email }} </template>
             <template #actions="{ item }">edit {{ item.first_name }}</template>

@@ -1,4 +1,4 @@
-declare namespace Domain.Subscriber.DataTransferObjects {
+export namespace Domain.Subscriber.DataTransferObjects {
     export type FormData = {
         id: number | null;
         title: string;
@@ -16,5 +16,11 @@ declare namespace Domain.Subscriber.DataTransferObjects {
         id: number | null;
         title: string;
         subscribers?: Array<Domain.Subscriber.DataTransferObjects.SubscriberData> | null;
+    };
+}
+export namespace Domain.Subscriber.ViewModels {
+    export type GetSubscribersViewModel = {
+        subscribers: any;
+        total: number;
     };
 }
