@@ -60,7 +60,7 @@ return [
      * But you can also use the `ModuleWriter` or implement your own.
      */
 
-    'writer' => Spatie\TypeScriptTransformer\Writers\TypeDefinitionWriter::class,
+    'writer' => App\Infrastructure\ExportTypeDefinitionWriter::class,
 
     /*
      * The generated TypeScript file can be formatted. We ship a Prettier formatter

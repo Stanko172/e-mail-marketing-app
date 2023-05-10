@@ -2,11 +2,12 @@
 import AppLayout from '../../Layouts/AppLayout.vue';
 import { useGenericDataTable, type DataTableHeading } from '@app/Components';
 import * as Types from '@app/types/generated';
+import { router } from '@inertiajs/vue3';
 
 type GetSubscribersViewModel =
     Types.Domain.Subscriber.ViewModels.GetSubscribersViewModel;
 
-defineProps<{ model: GetSubscribersViewModel }>();
+const props = defineProps<{ model: GetSubscribersViewModel }>();
 
 interface User {
     first_name: string;
@@ -42,12 +43,33 @@ const items: Array<User> = [
         email: 'stanko.bebek82@gmail.com',
     },
 ];
+
+function previousPage(): void {
+    if (!props.model.subscribers.prev_page_url) {
+        return;
+    }
+
+    router.get(props.model.subscribers.prev_page_url);
+}
+
+function nextPage(): void {
+    if (!props.model.subscribers.next_page_url) {
+        return;
+    }
+
+    router.get(props.model.subscribers.next_page_url);
+}
 </script>
 
 <template>
     <AppLayout>
-        <pre>{{ model }}</pre>
-        <UserDataTable :headings="headings" :items="items">
+        <pre>{{ model.subscribers }}</pre>
+        <UserDataTable
+            :headings="headings"
+            :items="items"
+            @paginate-previous="previousPage"
+            @paginate-next="nextPage"
+        >
             <template #email="{ item }"> test: {{ item.email }} </template>
             <template #actions="{ item }">edit {{ item.first_name }}</template>
         </UserDataTable>

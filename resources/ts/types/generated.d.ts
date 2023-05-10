@@ -20,7 +20,17 @@ export namespace Domain.Subscriber.DataTransferObjects {
 }
 export namespace Domain.Subscriber.ViewModels {
     export type GetSubscribersViewModel = {
-        subscribers: any;
+        subscribers: {
+            current_page: number;
+            data: Array<Domain.Subscriber.DataTransferObjects.SubscriberData>;
+            first_page_url: string;
+            from: number;
+            next_page_url: string | null;
+            path: string;
+            per_page: number;
+            prev_page_url: string | null;
+            to: number;
+        };
         total: number;
     };
 }

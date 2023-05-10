@@ -9,6 +9,7 @@ use Domain\Subscriber\Models\Subscriber;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
+use Spatie\TypeScriptTransformer\Attributes\TypeScriptType;
 use Spatie\ViewModels\ViewModel;
 
 #[TypeScript]
@@ -21,6 +22,17 @@ class GetSubscribersViewModel extends ViewModel
     ) {
     }
 
+    #[TypeScriptType([
+        'current_page' => 'int',
+        'data' => 'array<' . SubscriberData::class . '>',
+        'first_page_url' => 'string',
+        'from' => 'int',
+        'next_page_url' => 'string|null',
+        'path' => 'string',
+        'per_page' => 'int',
+        'prev_page_url' => 'string|null',
+        'to' => 'int',
+    ])]
     public function subscribers(): Paginator
     {
         /** @var Collection $items */
