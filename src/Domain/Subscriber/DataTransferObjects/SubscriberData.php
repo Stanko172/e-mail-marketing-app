@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Subscriber\DataTransferObjects;
 
+use Carbon\Carbon;
 use Domain\Subscriber\Models\Form;
 use Domain\Subscriber\Models\Subscriber;
 use Domain\Subscriber\Models\Tag;
@@ -22,6 +23,8 @@ class SubscriberData extends Data
     public readonly string $email,
     public readonly string $first_name,
     public readonly ?string $last_name,
+    public readonly ?string $full_name,
+    public readonly ?Carbon $subscribed_at,
     /** @var DataCollection<TagData> */
     public readonly ?DataCollection $tags,
     public readonly ?FormData $form,
