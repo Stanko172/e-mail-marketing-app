@@ -4,18 +4,14 @@ import { useGenericDataTable, type DataTableHeading } from '@app/Components';
 import * as Types from '@app/types/generated';
 import { router } from '@inertiajs/vue3';
 
+type SubscriberData =
+    Types.Domain.Subscriber.DataTransferObjects.SubscriberData;
 type GetSubscribersViewModel =
     Types.Domain.Subscriber.ViewModels.GetSubscribersViewModel;
 
 const props = defineProps<{ model: GetSubscribersViewModel }>();
 
-interface User {
-    first_name: string;
-    last_name: string;
-    email: string;
-}
-
-const UserDataTable = useGenericDataTable<User>();
+const SubscribersDataTable = useGenericDataTable<SubscriberData>();
 
 const headings: Array<DataTableHeading> = [
     {
@@ -27,20 +23,12 @@ const headings: Array<DataTableHeading> = [
         key: 'last_name',
     },
     {
-        title: 'First name',
+        title: 'Email',
         key: 'email',
     },
     {
         title: 'Actions',
         key: 'actions',
-    },
-];
-
-const items: Array<User> = [
-    {
-        first_name: 'Stanko',
-        last_name: 'Bebek',
-        email: 'stanko.bebek82@gmail.com',
     },
 ];
 
@@ -63,15 +51,13 @@ function nextPage(): void {
 
 <template>
     <AppLayout>
-        <pre>{{ model.subscribers }}</pre>
-        <UserDataTable
+        <SubscribersDataTable
             :headings="headings"
-            :items="items"
+            :items="model.subscribers.data"
             @paginate-previous="previousPage"
             @paginate-next="nextPage"
         >
-            <template #email="{ item }"> test: {{ item.email }} </template>
             <template #actions="{ item }">edit {{ item.first_name }}</template>
-        </UserDataTable>
+        </SubscribersDataTable>
     </AppLayout>
 </template>

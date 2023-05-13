@@ -22,7 +22,7 @@ class SubscriberController
             'Subscriber/List',
             [
                 'model' => new GetSubscribersViewModel(
-                    $request->get('per_page', 1)
+                    (int) $request->get('page', 1)
                 ),
             ],
         );

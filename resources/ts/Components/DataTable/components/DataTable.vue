@@ -3,6 +3,7 @@ import { computed } from 'vue';
 import { chain } from 'lodash';
 import type { DataTableHeading } from '../types';
 import PaginationButton from './PaginationButton.vue';
+import { map, pick } from 'lodash';
 
 const props = defineProps<{
     headings: Array<DataTableHeading>;
@@ -18,6 +19,12 @@ const hasActions = computed<boolean>(() => {
     return chain(props.headings)
         .find(({ key }) => key === 'actions')
         .isEmpty();
+});
+
+const itemsByHeadings = computed(() => {
+    return props.items.map((item) => {
+        return pick(item, map(props.headings, 'key'));
+    });
 });
 </script>
 
@@ -53,7 +60,7 @@ const hasActions = computed<boolean>(() => {
 
             <tbody>
                 <tr
-                    v-for="(item, index) in items"
+                    v-for="(item, index) in itemsByHeadings"
                     :key="index"
                     class="border-b border-slate-200"
                 >
@@ -62,13 +69,13 @@ const hasActions = computed<boolean>(() => {
                         :key="key"
                         class="px-6 py-4"
                     >
-                        <slot :name="key" :item="item">
+                        <slot :name="key" :item="items[index]">
                             {{ value }}
                         </slot>
                     </td>
 
                     <td v-if="hasActions">
-                        <slot name="actions" :item="item"></slot>
+                        <slot name="actions" :item="items[index]"></slot>
                     </td>
                 </tr>
             </tbody>

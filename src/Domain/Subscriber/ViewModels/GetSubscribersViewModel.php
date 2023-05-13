@@ -15,7 +15,7 @@ use Spatie\ViewModels\ViewModel;
 #[TypeScript]
 class GetSubscribersViewModel extends ViewModel
 {
-    private const PER_PAGE = 20;
+    private const PER_PAGE = 5;
 
     public function __construct(
         private readonly int $currentPage,
@@ -48,7 +48,7 @@ class GetSubscribersViewModel extends ViewModel
         );
 
         return new Paginator(
-            $items,
+            $items->values(),
             self::PER_PAGE,
             $this->currentPage,
             [
