@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace Domain\Subscriber\DataTransferObjects;
 
 use Domain\Subscriber\Models\Form;
+use Domain\Subscriber\Models\Subscriber;
 use Domain\Subscriber\Models\Tag;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Validation\Rule;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\DataCollection;
+use Spatie\LaravelData\Lazy;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 #[TypeScript]
@@ -40,6 +42,16 @@ class SubscriberData extends Data
             'tags' => ['nullable', 'sometimes', 'array'],
             'form_id' => ['nullable', 'sometimes', 'exists:forms,id'],
         ];
+    }
+
+    public static function fromModel(Subscriber $subscriber): self
+    {
+        return self::from([
+            ...$subscriber->toArray(),
+            'tags' => Lazy::whenLoaded('tags', $subscriber, fn () => TagData::collection($subscriber->tags)),
+            'form' => Lazy::whenLoaded('form', $subscriber, fn () => FormData::from($subscriber->form)),
+            'full_name' => $subscriber->full_name,
+        ]);
     }
 
     public static function fromRequest(Request $request): self
