@@ -16,8 +16,8 @@ use Illuminate\Support\Collection;
 class UpsertSubscriberViewModel extends ViewModel
 {
     public function __construct(
-    public readonly ?Subscriber $subscriber = null,
-  ) {
+        public readonly ?Subscriber $subscriber = null,
+    ) {
     }
 
     public function subscriber(): ?SubscriberData

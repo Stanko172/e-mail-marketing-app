@@ -18,16 +18,16 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 class SubscriberData extends Data
 {
     public function __construct(
-    public readonly ?int $id,
-    public readonly string $email,
-    public readonly string $first_name,
-    public readonly ?string $last_name,
-    public readonly ?string $full_name,
-    public readonly ?string $subscribed_at,
-    /** @var DataCollection<TagData> */
-    public readonly null|Lazy|DataCollection $tags,
-    public readonly null|Lazy|FormData $form,
-  ) {
+        public readonly ?int $id,
+        public readonly string $email,
+        public readonly string $first_name,
+        public readonly ?string $last_name,
+        public readonly ?string $full_name,
+        public readonly ?string $subscribed_at,
+        /** @var DataCollection<TagData> */
+        public readonly null|Lazy|DataCollection $tags,
+        public readonly null|Lazy|FormData $form,
+    ) {
     }
 
     public static function rules(): array
