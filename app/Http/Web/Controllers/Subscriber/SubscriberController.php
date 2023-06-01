@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Web\Controllers\Subscriber;
 
-use Domain\Shared\Actions\UpsertSubscriberAction;
+use Domain\Subscriber\Actions\UpsertSubscriberAction;
 use Domain\Subscriber\DataTransferObjects\SubscriberData;
 use Domain\Subscriber\ViewModels\GetSubscribersViewModel;
 use Domain\Subscriber\ViewModels\UpsertSubscriberViewModel;

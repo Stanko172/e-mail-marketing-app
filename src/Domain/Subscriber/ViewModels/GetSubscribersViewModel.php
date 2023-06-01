@@ -24,7 +24,7 @@ class GetSubscribersViewModel extends ViewModel
 
     #[TypeScriptType([
         'current_page' => 'int',
-        'data' => 'array<' . SubscriberData::class . '>',
+        'data' => 'array<'.SubscriberData::class.'>',
         'first_page_url' => 'string',
         'from' => 'int',
         'next_page_url' => 'string|null',

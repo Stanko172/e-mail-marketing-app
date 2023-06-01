@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Shared\Actions;
+namespace Domain\Subscriber\Actions;
 
 use Domain\Shared\Models\User;
 use Domain\Subscriber\DataTransferObjects\SubscriberData;

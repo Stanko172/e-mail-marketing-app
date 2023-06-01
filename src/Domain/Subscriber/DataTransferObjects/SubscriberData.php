@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Domain\Subscriber\DataTransferObjects;
 
-use Carbon\Carbon;
 use Domain\Subscriber\Models\Form;
 use Domain\Subscriber\Models\Subscriber;
 use Domain\Subscriber\Models\Tag;

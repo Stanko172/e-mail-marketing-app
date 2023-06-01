@@ -42,7 +42,7 @@ final class ViewModelTransformer implements Transformer
         return TransformedType::create(
             $class,
             $name,
-            '{' . PHP_EOL . $type . '}',
+            '{'.PHP_EOL.$type.'}',
             $missingSymbols,
         );
     }
@@ -66,7 +66,7 @@ final class ViewModelTransformer implements Transformer
                     );
                 }
 
-                return "{$carry}{$method->getName()}: {$returnType};" . PHP_EOL;
+                return "{$carry}{$method->getName()}: {$returnType};".PHP_EOL;
             },
             '',
         );
