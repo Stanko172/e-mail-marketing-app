@@ -1,14 +1,17 @@
 <script lang="ts" setup>
 import AppLayout from '../../Layouts/AppLayout.vue';
 import { useGenericDataTable, type DataTableHeading } from '@app/Components';
+import * as Types from '@app/types/generated';
+import { router } from '@inertiajs/vue3';
 
-interface User {
-    first_name: string;
-    last_name: string;
-    email: string;
-}
+type SubscriberData =
+    Types.Domain.Subscriber.DataTransferObjects.SubscriberData;
+type GetSubscribersViewModel =
+    Types.Domain.Subscriber.ViewModels.GetSubscribersViewModel;
 
-const UserDataTable = useGenericDataTable<User>();
+const props = defineProps<{ model: GetSubscribersViewModel }>();
+
+const SubscribersDataTable = useGenericDataTable<SubscriberData>();
 
 const headings: Array<DataTableHeading> = [
     {
@@ -20,7 +23,7 @@ const headings: Array<DataTableHeading> = [
         key: 'last_name',
     },
     {
-        title: 'First name',
+        title: 'Email',
         key: 'email',
     },
     {
@@ -29,20 +32,32 @@ const headings: Array<DataTableHeading> = [
     },
 ];
 
-const items: Array<User> = [
-    {
-        first_name: 'Stanko',
-        last_name: 'Bebek',
-        email: 'stanko.bebek82@gmail.com',
-    },
-];
+function previousPage(): void {
+    if (!props.model.subscribers.prev_page_url) {
+        return;
+    }
+
+    router.get(props.model.subscribers.prev_page_url);
+}
+
+function nextPage(): void {
+    if (!props.model.subscribers.next_page_url) {
+        return;
+    }
+
+    router.get(props.model.subscribers.next_page_url);
+}
 </script>
 
 <template>
     <AppLayout>
-        <UserDataTable :headings="headings" :items="items">
-            <template #email="{ item }"> test: {{ item.email }} </template>
+        <SubscribersDataTable
+            :headings="headings"
+            :items="model.subscribers.data"
+            @paginate-previous="previousPage"
+            @paginate-next="nextPage"
+        >
             <template #actions="{ item }">edit {{ item.first_name }}</template>
-        </UserDataTable>
+        </SubscribersDataTable>
     </AppLayout>
 </template>

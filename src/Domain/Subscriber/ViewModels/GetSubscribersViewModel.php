@@ -4,21 +4,35 @@ declare(strict_types=1);
 
 namespace Domain\Subscriber\ViewModels;
 
-use Domain\Shared\ViewModels\ViewModel;
 use Domain\Subscriber\DataTransferObjects\SubscriberData;
 use Domain\Subscriber\Models\Subscriber;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Spatie\TypeScriptTransformer\Attributes\TypeScript;
+use Spatie\TypeScriptTransformer\Attributes\TypeScriptType;
+use Spatie\ViewModels\ViewModel;
 
+#[TypeScript]
 class GetSubscribersViewModel extends ViewModel
 {
-    private const PER_PAGE = 20;
+    private const PER_PAGE = 5;
 
     public function __construct(
         private readonly int $currentPage,
-      ) {
+    ) {
     }
 
+    #[TypeScriptType([
+        'current_page' => 'int',
+        'data' => 'array<'.SubscriberData::class.'>',
+        'first_page_url' => 'string',
+        'from' => 'int',
+        'next_page_url' => 'string|null',
+        'path' => 'string',
+        'per_page' => 'int',
+        'prev_page_url' => 'string|null',
+        'to' => 'int',
+    ])]
     public function subscribers(): Paginator
     {
         /** @var Collection $items */
@@ -34,7 +48,7 @@ class GetSubscribersViewModel extends ViewModel
         );
 
         return new Paginator(
-            $items,
+            $items->values(),
             self::PER_PAGE,
             $this->currentPage,
             [

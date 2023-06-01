@@ -20,3 +20,5 @@ Route::get('/', function () {
 });
 
 Route::resource('subscribers', SubscriberController::class);
+
+require __DIR__.'/auth.php';
