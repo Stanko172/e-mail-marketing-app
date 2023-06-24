@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import AppLayout from '../../Layouts/AppLayout.vue';
-import { useGenericDataTable, type DataTableHeading } from '@app/Components';
+import { AppLayout } from '@app/components/layouts';
+import { useGenericDataTable, type DataTableHeading } from '@app/components/ui';
 import * as Types from '@app/types/generated';
 import { router } from '@inertiajs/vue3';
 

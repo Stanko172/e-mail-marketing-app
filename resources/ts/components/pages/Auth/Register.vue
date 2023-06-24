@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import { Button, ButtonType, TextInput, TextInputType } from '@app/Components';
+import {
+    Button,
+    ButtonType,
+    TextInput,
+    TextInputType,
+} from '@app/components/ui';
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 
 const form = useForm({
@@ -117,7 +122,7 @@ const submit = () => {
                         </Button>
                         <p class="text-sm font-light text-gray-500">
                             <Link
-                                :href="route('login')"
+                                :href="$route('login')"
                                 class="underline text-sm text-gray-600 hover:text-gray-900"
                             >
                                 Already registered?

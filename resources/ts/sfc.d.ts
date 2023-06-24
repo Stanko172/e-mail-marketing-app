@@ -1,4 +1,6 @@
-import { RouteParam, RouteParamsWithQueryOverload } from 'ziggy-js';
+import type { default as _route } from 'ziggy-js';
+
+type ZiggyRoute = typeof _route;
 declare module '*.vue' {
     import { defineComponent } from 'vue';
 
@@ -8,8 +10,13 @@ declare module '*.vue' {
 }
 
 declare global {
-    const route: (
-        name?: string,
-        params?: RouteParamsWithQueryOverload | RouteParam
-    ) => string;
+    let route: typeof ZiggyRoute;
+    let $route: typeof ZiggyRoute;
+}
+
+declare module '@vue/runtime-core' {
+    interface ComponentCustomProperties {
+        route: typeof ZiggyRoute;
+        $route: typeof ZiggyRoute;
+    }
 }

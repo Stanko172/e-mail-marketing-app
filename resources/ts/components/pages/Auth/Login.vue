@@ -1,6 +1,11 @@
 <script setup lang="ts">
-import { Button, ButtonType, TextInput, TextInputType } from '@app/Components';
-import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
+import {
+    Button,
+    ButtonType,
+    TextInput,
+    TextInputType,
+} from '@app/components/ui';
+import { Head, useForm } from '@inertiajs/inertia-vue3';
 
 defineProps<{
     canResetPassword: boolean;
