@@ -10,6 +10,7 @@ createInertiaApp({
         });
         return pages[`./components/pages/${name}.vue`];
     },
+    // @ts-ignore
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
