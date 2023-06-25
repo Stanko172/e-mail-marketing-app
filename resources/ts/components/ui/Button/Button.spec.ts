@@ -1,4 +1,4 @@
-import { RenderResult, cleanup, render, screen } from '@testing-library/vue';
+import { RenderResult, cleanup, render } from '@testing-library/vue';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { Button } from './components';
 
