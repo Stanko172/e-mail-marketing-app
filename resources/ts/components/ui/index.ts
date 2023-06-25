@@ -4,4 +4,5 @@ export {
     useGenericDataTable,
     type DataTableHeading,
 } from './DataTable';
+export { Spinner } from './Spinner';
 export { TextInput, TextInputType } from './TextInput';
