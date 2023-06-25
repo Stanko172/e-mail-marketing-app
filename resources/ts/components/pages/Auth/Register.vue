@@ -122,7 +122,7 @@ const submit = () => {
                         </Button>
                         <p class="text-sm font-light text-gray-500">
                             <Link
-                                :href="$route('login')"
+                                :href="route('login')"
                                 class="underline text-sm text-gray-600 hover:text-gray-900"
                             >
                                 Already registered?
