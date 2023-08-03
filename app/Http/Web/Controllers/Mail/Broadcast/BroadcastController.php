@@ -5,6 +5,7 @@ namespace App\Http\Web\Controllers\Mail\Broadcast;
 use Domain\Mail\Actions\Broadcast\UpsertBroadcastAction;
 use Domain\Mail\DataTransferObjects\Broadcasts\BroadcastData;
 use Domain\Mail\Models\Broadcast\Broadcast;
+use Domain\Mail\ViewModels\Broadcast\GetBroadcastsViewModel;
 use Domain\Mail\ViewModels\Broadcast\UpsertBroadcastViewModel;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Request;
@@ -13,6 +14,13 @@ use Inertia\Response;
 
 class BroadcastController
 {
+    public function index(): Response
+    {
+        return Inertia::render('Broadcast/List', [
+            'model' => new GetBroadcastsViewModel(),
+        ]);
+    }
+
     public function create(): Response
     {
         return Inertia::render('Broadcast/Form', [

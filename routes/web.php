@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Web\Controllers\Mail\Broadcast\BroadcastController;
 use App\Http\Web\Controllers\Subscriber\SubscriberController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -17,8 +18,10 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Home');
-});
+})->name('home');
 
 Route::resource('subscribers', SubscriberController::class);
+
+Route::resource('broadcasts', BroadcastController::class);
 
 require __DIR__.'/auth.php';
