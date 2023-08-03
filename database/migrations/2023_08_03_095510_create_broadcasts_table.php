@@ -1,10 +1,10 @@
 <?php
 
+use Domain\Mail\Enums\Broadcast\BroadcastStatus;
 use Domain\Shared\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Domain\Mail\Enums\Broadcast\BroadcastStatus;
 
 class CreateBroadcastsTable extends Migration
 {

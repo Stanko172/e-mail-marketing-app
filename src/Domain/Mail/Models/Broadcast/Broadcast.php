@@ -2,6 +2,7 @@
 
 namespace Domain\Mail\Models\Broadcast;
 
+use Domain\Mail\DataTransferObjects\Broadcasts\BroadcastData;
 use Domain\Mail\Enums\Broadcast\BroadcastStatus;
 use Domain\Mail\Models\Casts\FiltersCast;
 use Domain\Shared\Models\BaseModel;
@@ -21,4 +22,6 @@ class Broadcast extends BaseModel
     protected $attributes = [
         'status' => BroadcastStatus::Draft,
     ];
+
+    protected $dataClass = BroadcastData::class;
 }
