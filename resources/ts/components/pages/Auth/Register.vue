@@ -5,7 +5,7 @@ import {
     TextInput,
     TextInputType,
 } from '@app/components/ui';
-import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
+import { Head, Link, useForm } from '@inertiajs/vue3';
 
 const form = useForm({
     name: '',
