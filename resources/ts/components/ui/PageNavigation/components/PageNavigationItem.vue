@@ -18,7 +18,7 @@ withDefaults(
     <li>
         <Link
             :href="href"
-            class="p-2 my-1 inline-block w-full"
+            class="p-2 my-1 inline-block w-full rounded-md"
             :class="
                 active
                     ? 'text-blue-700 bg-blue-50'

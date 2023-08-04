@@ -1,5 +1,10 @@
 <script lang="ts" setup>
-import { PageNavigation, PageNavigationItem } from '@app/components/ui';
+import {
+    PageNavigation,
+    PageNavigationItem,
+    ResourceItem,
+    ResourceList,
+} from '@app/components/ui';
 import { AppLayout } from '@app/components/layouts';
 import * as Types from '@app/types/generated';
 
@@ -24,6 +29,10 @@ defineProps<{
             </PageNavigation>
         </template>
 
-        <pre>{{ model }}</pre>
+        <!-- <pre>{{ model }}</pre> -->
+        <ResourceList>
+            <ResourceItem></ResourceItem>
+            <ResourceItem></ResourceItem>
+        </ResourceList>
     </AppLayout>
 </template>
