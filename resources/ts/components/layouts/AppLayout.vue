@@ -4,7 +4,6 @@ import { Link, router } from '@inertiajs/vue3';
 interface NavigationLink {
     id: number;
     name: string;
-    href: string;
     route: string;
 }
 
@@ -12,19 +11,16 @@ const navigationLinks: NavigationLink[] = [
     {
         id: 1,
         name: 'Home',
-        href: '/',
         route: 'home',
     },
     {
         id: 2,
         name: 'Subscribers',
-        href: '/subscribers',
         route: 'subscribers.index',
     },
     {
         id: 3,
-        name: 'Broadcast',
-        href: '/broadcasts',
+        name: 'Mails',
         route: 'broadcasts.index',
     },
 ];
@@ -85,15 +81,15 @@ function logout(): void {
                         class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
                     >
                         <li v-for="link in navigationLinks" :key="link.id">
-                            <a
-                                :href="link.href"
-                                class="py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:p-0"
+                            <Link
+                                :href="route(link.route)"
+                                class="py-2 pl-3 pr-4"
                                 :class="
                                     route().current() === link.route
                                         ? 'text-blue-700'
                                         : 'text-gray-700'
                                 "
-                                >{{ link.name }}</a
+                                >{{ link.name }}</Link
                             >
                         </li>
                     </ul>
@@ -101,8 +97,13 @@ function logout(): void {
             </div>
         </nav>
 
-        <main class="mt-16 max-w-7xl mx-auto">
-            <slot />
+        <main class="grid grid-cols-4 mt-16 max-w-7xl mx-auto">
+            <div>
+                <slot name="page-navigation" />
+            </div>
+            <div class="col-span-3">
+                <slot />
+            </div>
         </main>
     </div>
 </template>
