@@ -4,16 +4,21 @@ import { TextInputType } from '../types';
 withDefaults(
     defineProps<{
         label: string;
-        type: TextInputType;
-        name: string;
-        id: string;
-        placeholder: string;
-        required: boolean;
+        type?: TextInputType;
+        name?: string;
+        id?: string;
+        placeholder?: string;
+        required?: boolean;
         autofocus?: boolean;
-        autocomplete: string;
+        autocomplete?: string;
     }>(),
     {
         autofocus: false,
+        type: TextInputType.Text,
+        name: null,
+        id: null,
+        placeholder: null,
+        autocomplete: 'off',
     }
 );
 

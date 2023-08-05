@@ -7,4 +7,5 @@ export {
 export { PageNavigation, PageNavigationItem } from './PageNavigation';
 export { ResourceItem, ResourceList } from './ResourceList';
 export { Spinner } from './Spinner';
+export { Textarea } from './Textarea';
 export { TextInput, TextInputType } from './TextInput';

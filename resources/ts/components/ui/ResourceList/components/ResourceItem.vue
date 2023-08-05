@@ -18,7 +18,6 @@ function visit(): void {
         @click="visit"
         class="p-4 hover:bg-gray-50 cursor-pointer flex justify-between"
     >
-        {{ href }}
         <div class="flex flex-col">
             <span class="text-sm font-semibold leading-6 text-gray-900">
                 {{ title }}
