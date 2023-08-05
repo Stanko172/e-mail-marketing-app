@@ -29,10 +29,14 @@ defineProps<{
             </PageNavigation>
         </template>
 
-        <!-- <pre>{{ model }}</pre> -->
         <ResourceList>
-            <ResourceItem></ResourceItem>
-            <ResourceItem></ResourceItem>
+            <ResourceItem
+                v-for="broadcast in model.broadcasts"
+                :key="broadcast.id"
+                :title="broadcast.subject"
+                :description="broadcast.sent_at"
+                :href="route('broadcasts.edit', broadcast.id)"
+            />
         </ResourceList>
     </AppLayout>
 </template>
