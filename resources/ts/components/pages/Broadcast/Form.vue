@@ -1,9 +1,15 @@
 <script lang="ts" setup>
 import { AppLayout } from '@app/components/layouts';
-import { Textarea, TextInput } from '@app/components/ui';
+import {
+    Textarea,
+    TextInput,
+    MultiSelect,
+    type SelectOption,
+} from '@app/components/ui';
+import { PageNavigation } from '@app/components/partials/Broadcast';
 import * as Types from '@app/types/generated';
 import { useForm } from '@inertiajs/inertia-vue3';
-import { onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
 
 type UpsertBroadcastViewModel =
     Types.Domain.Mail.ViewModels.Broadcast.UpsertBroadcastViewModel;
@@ -33,16 +39,50 @@ onMounted(() => {
     form.filters.form_ids = props.model.broadcast.filters.form_ids;
     form.filters.tag_ids = props.model.broadcast.filters.tag_ids;
 });
+
+const formOptions = computed<SelectOption[]>(() => {
+    //@ts-ignore
+    //TODO: update type transformer to recognize types from traits
+    return props.model.forms.map((form) => ({
+        title: form.title,
+        value: form.id,
+    }));
+});
+
+const tagOptions = computed<SelectOption[]>(() => {
+    //@ts-ignore
+    //TODO: update type transformer to recognize types from traits
+    return props.model.tags.map((tag) => ({
+        title: tag.title,
+        value: tag.id,
+    }));
+});
 </script>
 
 <template>
     <AppLayout>
+        <template #page-navigation>
+            <PageNavigation />
+        </template>
+        <pre>{{ form.filters }}</pre>
         <form>
             <div>
-                <TextInput label="Subject" />
+                <TextInput label="Subject" v-model="form.subject" />
             </div>
             <div>
-                <Textarea label="Content" />
+                <Textarea label="Content" v-model="form.content" />
+            </div>
+            <div>
+                <MultiSelect
+                    :options="formOptions"
+                    v-model="form.filters.form_ids"
+                />
+            </div>
+            <div>
+                <MultiSelect
+                    :options="tagOptions"
+                    v-model="form.filters.tag_ids"
+                />
             </div>
         </form>
     </AppLayout>

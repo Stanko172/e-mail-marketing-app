@@ -1,10 +1,6 @@
 <script lang="ts" setup>
-import {
-    PageNavigation,
-    PageNavigationItem,
-    ResourceItem,
-    ResourceList,
-} from '@app/components/ui';
+import { ResourceItem, ResourceList } from '@app/components/ui';
+import { PageNavigation } from '@app/components/partials/Broadcast';
 import { AppLayout } from '@app/components/layouts';
 import * as Types from '@app/types/generated';
 
@@ -19,14 +15,7 @@ defineProps<{
 <template>
     <AppLayout>
         <template #page-navigation>
-            <PageNavigation>
-                <PageNavigationItem
-                    title="Broadcasts"
-                    :href="route('broadcasts.index')"
-                    :active="route().current() === 'broadcasts.index'"
-                />
-                <PageNavigationItem title="Sequences" />
-            </PageNavigation>
+            <PageNavigation />
         </template>
 
         <ResourceList>
