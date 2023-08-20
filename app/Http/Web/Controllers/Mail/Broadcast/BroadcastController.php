@@ -33,6 +33,8 @@ class BroadcastController extends Controller
     {
         UpsertBroadcastAction::execute($data, $request->user());
 
+        $this->toast('Broadcast successfully created.');
+
         return to_route('broadcasts.index');
     }
 

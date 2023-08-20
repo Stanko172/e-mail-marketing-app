@@ -2,12 +2,13 @@
 import { AppLayout } from '@app/components/layouts';
 import {
     Button,
+    ButtonType,
     Form,
     FormLayout,
     MultiSelect,
+    type SelectOption,
     Textarea,
     TextInput,
-    type SelectOption,
 } from '@app/components/ui';
 import { PageNavigation } from '@app/components/partials/Broadcast';
 import * as Types from '@app/types/generated';
@@ -98,7 +99,7 @@ function submit(): void {
                 />
             </FormLayout>
             <FormLayout>
-                <Button>Submit</Button>
+                <Button :type="ButtonType.Submit">Submit</Button>
             </FormLayout>
         </Form>
     </AppLayout>

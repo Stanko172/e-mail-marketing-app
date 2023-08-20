@@ -1,8 +1,15 @@
 <script lang="ts" setup>
-import { ResourceItem, ResourceList } from '@app/components/ui';
+import {
+    Button,
+    PageActions,
+    PageActionsItem,
+    ResourceItem,
+    ResourceList,
+} from '@app/components/ui';
 import { PageNavigation } from '@app/components/partials/Broadcast';
 import { AppLayout } from '@app/components/layouts';
 import * as Types from '@app/types/generated';
+import { router } from '@inertiajs/vue3';
 
 type GetBroadcastsViewModel =
     Types.Domain.Mail.ViewModels.Broadcast.GetBroadcastsViewModel;
@@ -17,6 +24,14 @@ defineProps<{
         <template #page-navigation>
             <PageNavigation />
         </template>
+
+        <PageActions>
+            <PageActionsItem>
+                <Button @click="router.get(route('broadcasts.create'))">
+                    Create broadcast
+                </Button>
+            </PageActionsItem>
+        </PageActions>
 
         <ResourceList>
             <ResourceItem

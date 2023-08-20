@@ -5,6 +5,7 @@ export {
     type DataTableHeading,
 } from './DataTable';
 export { Form, FormLayout } from './Form';
+export { PageActions, PageActionsItem } from './PageActions';
 export { PageNavigation, PageNavigationItem } from './PageNavigation';
 export { ResourceItem, ResourceList } from './ResourceList';
 export { MultiSelect, Select, type SelectOption } from './Select';
