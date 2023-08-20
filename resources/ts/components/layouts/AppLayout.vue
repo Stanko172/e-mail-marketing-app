@@ -1,28 +1,14 @@
 <script lang="ts" setup>
-import { Link, router, usePage } from '@inertiajs/vue3';
+import { Link, router } from '@inertiajs/vue3';
+import { useToastNotifications } from './composables';
+import { NavigationLink } from './types';
 
-interface NavigationLink {
-    id: number;
-    name: string;
-    route: string;
-}
+useToastNotifications();
 
 const navigationLinks: NavigationLink[] = [
-    {
-        id: 1,
-        name: 'Home',
-        route: 'home',
-    },
-    {
-        id: 2,
-        name: 'Subscribers',
-        route: 'subscribers.index',
-    },
-    {
-        id: 3,
-        name: 'Mails',
-        route: 'broadcasts.index',
-    },
+    { id: 1, name: 'Home', route: 'home' },
+    { id: 2, name: 'Subscribers', route: 'subscribers.index' },
+    { id: 3, name: 'Mails', route: 'broadcasts.index' },
 ];
 
 function logout(): void {
@@ -32,8 +18,6 @@ function logout(): void {
 
 <template>
     <div class="h-screen">
-        test:
-        <pre>{{ usePage().props.toastNotifications }}</pre>
         <div class="h-full flex flex-col">
             <nav
                 class="bg-white dark:bg-gray-900 w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600"
