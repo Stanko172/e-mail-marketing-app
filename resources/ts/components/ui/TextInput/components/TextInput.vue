@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { ErrorMessage } from '../../ErrorMessage';
 import { TextInputType } from '../types';
 
 withDefaults(
@@ -11,14 +12,16 @@ withDefaults(
         required?: boolean;
         autofocus?: boolean;
         autocomplete?: string;
+        error?: string;
     }>(),
     {
-        autofocus: false,
-        type: TextInputType.Text,
-        name: null,
-        id: null,
-        placeholder: null,
         autocomplete: 'off',
+        autofocus: false,
+        error: null,
+        id: null,
+        name: null,
+        placeholder: null,
+        type: TextInputType.Text,
     }
 );
 
@@ -44,5 +47,7 @@ const modelValue = defineModel();
             autofocus
             :autocomplete="autocomplete"
         />
+
+        <ErrorMessage v-if="error" :message="error" />
     </div>
 </template>

@@ -4,6 +4,7 @@ export {
     useGenericDataTable,
     type DataTableHeading,
 } from './DataTable';
+export { ErrorMessage } from './ErrorMessage';
 export { Form, FormLayout } from './Form';
 export { PageActions, PageActionsItem } from './PageActions';
 export { PageNavigation, PageNavigationItem } from './PageNavigation';

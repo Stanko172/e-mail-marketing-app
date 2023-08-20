@@ -1,10 +1,12 @@
 <script lang="ts" setup>
+import { ErrorMessage } from '../../ErrorMessage';
 import { uniqueId } from '@app/utils';
 import type { SelectOption } from '../types';
 
 const props = defineProps<{
     id?: string;
     options: SelectOption[];
+    error?: string;
 }>();
 
 const modelValue = defineModel();
@@ -35,5 +37,7 @@ const elementId = props.id || uniqueId('select');
                 {{ option.title }}
             </option>
         </select>
+
+        <ErrorMessage v-if="error" :message="error" />
     </div>
 </template>

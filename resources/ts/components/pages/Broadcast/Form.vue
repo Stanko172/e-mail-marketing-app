@@ -6,9 +6,9 @@ import {
     Form,
     FormLayout,
     MultiSelect,
-    type SelectOption,
     Textarea,
     TextInput,
+    type SelectOption,
 } from '@app/components/ui';
 import { PageNavigation } from '@app/components/partials/Broadcast';
 import * as Types from '@app/types/generated';
@@ -81,21 +81,31 @@ function submit(): void {
 
         <Form @submit.prevent="submit">
             <FormLayout>
-                <TextInput label="Subject" v-model="form.subject" />
+                <TextInput
+                    label="Subject"
+                    v-model="form.subject"
+                    :error="form.errors['subject']"
+                />
             </FormLayout>
             <FormLayout>
-                <Textarea label="Content" v-model="form.content" />
+                <Textarea
+                    label="Content"
+                    v-model="form.content"
+                    :error="form.errors['content']"
+                />
             </FormLayout>
             <FormLayout>
                 <MultiSelect
                     :options="formOptions"
                     v-model="form.filters.form_ids"
+                    :error="form.errors['filters.form_ids']"
                 />
             </FormLayout>
             <FormLayout>
                 <MultiSelect
                     :options="tagOptions"
                     v-model="form.filters.tag_ids"
+                    :error="form.errors['filters.tag_ids']"
                 />
             </FormLayout>
             <FormLayout>

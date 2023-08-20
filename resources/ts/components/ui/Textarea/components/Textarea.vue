@@ -1,10 +1,13 @@
 <script lang="ts" setup>
+import { ErrorMessage } from '../../ErrorMessage';
+
 const modelValue = defineModel();
 
 defineProps<{
     id?: string;
     label: string;
     placeholder?: string;
+    error?: string;
 }>();
 </script>
 
@@ -21,5 +24,7 @@ defineProps<{
             :placeholder="placeholder"
             v-model="modelValue"
         ></textarea>
+
+        <ErrorMessage v-if="error" :message="error" />
     </label>
 </template>
