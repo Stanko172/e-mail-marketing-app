@@ -14,6 +14,16 @@ class Broadcast extends BaseModel
     use WithData;
     use HasUser;
 
+    protected $fillable = [
+        'id',
+        'subject',
+        'content',
+        'status',
+        'filters',
+        'sent_at',
+        'user_id',
+    ];
+
     protected $casts = [
         'filters' => FiltersCast::class,
         'status' => BroadcastStatus::class,

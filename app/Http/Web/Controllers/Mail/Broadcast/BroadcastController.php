@@ -2,17 +2,18 @@
 
 namespace App\Http\Web\Controllers\Mail\Broadcast;
 
+use App\Http\Controllers\Controller;
 use Domain\Mail\Actions\Broadcast\UpsertBroadcastAction;
 use Domain\Mail\DataTransferObjects\Broadcasts\BroadcastData;
 use Domain\Mail\Models\Broadcast\Broadcast;
 use Domain\Mail\ViewModels\Broadcast\GetBroadcastsViewModel;
 use Domain\Mail\ViewModels\Broadcast\UpsertBroadcastViewModel;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class BroadcastController
+class BroadcastController extends Controller
 {
     public function index(): Response
     {
@@ -45,6 +46,8 @@ class BroadcastController
     public function update(BroadcastData $data, Request $request): RedirectResponse
     {
         UpsertBroadcastAction::execute($data, $request->user());
+
+        $this->toast('Cooool!!!');
 
         return to_route('broadcasts.index');
     }

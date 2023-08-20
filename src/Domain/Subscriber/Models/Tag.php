@@ -15,6 +15,7 @@ class Tag extends BaseModel
     use HasUser;
 
     protected $dataClass = TagData::class;
+
     protected $fillable = [
         'title',
         'user_id',

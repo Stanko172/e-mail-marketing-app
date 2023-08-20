@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { AppLayout } from '@app/components/layouts';
 import {
+    Button,
     Textarea,
     TextInput,
     MultiSelect,
@@ -8,7 +9,7 @@ import {
 } from '@app/components/ui';
 import { PageNavigation } from '@app/components/partials/Broadcast';
 import * as Types from '@app/types/generated';
-import { useForm } from '@inertiajs/inertia-vue3';
+import { useForm } from '@inertiajs/vue3';
 import { computed, onMounted } from 'vue';
 
 type UpsertBroadcastViewModel =
@@ -57,6 +58,16 @@ const tagOptions = computed<SelectOption[]>(() => {
         value: tag.id,
     }));
 });
+
+function submit(): void {
+    if (!props.model.broadcast) {
+        form.post(route('broadcasts.store'));
+    } else {
+        form.put(
+            route('broadcasts.update', { broadcast: props.model.broadcast })
+        );
+    }
+}
 </script>
 
 <template>
@@ -64,8 +75,8 @@ const tagOptions = computed<SelectOption[]>(() => {
         <template #page-navigation>
             <PageNavigation />
         </template>
-        <pre>{{ form.filters }}</pre>
-        <form>
+        <pre>{{ form }}</pre>
+        <form @submit.prevent="submit">
             <div>
                 <TextInput label="Subject" v-model="form.subject" />
             </div>
@@ -84,6 +95,7 @@ const tagOptions = computed<SelectOption[]>(() => {
                     v-model="form.filters.tag_ids"
                 />
             </div>
+            <Button>Submit</Button>
         </form>
     </AppLayout>
 </template>
