@@ -1,19 +1,27 @@
 <script lang="ts" setup>
+import { ErrorMessage } from '../../ErrorMessage';
 import { TextInputType } from '../types';
 
 withDefaults(
     defineProps<{
         label: string;
-        type: TextInputType;
-        name: string;
-        id: string;
-        placeholder: string;
-        required: boolean;
+        type?: TextInputType;
+        name?: string;
+        id?: string;
+        placeholder?: string;
+        required?: boolean;
         autofocus?: boolean;
-        autocomplete: string;
+        autocomplete?: string;
+        error?: string;
     }>(),
     {
+        autocomplete: 'off',
         autofocus: false,
+        error: null,
+        id: null,
+        name: null,
+        placeholder: null,
+        type: TextInputType.Text,
     }
 );
 
@@ -39,5 +47,7 @@ const modelValue = defineModel();
             autofocus
             :autocomplete="autocomplete"
         />
+
+        <ErrorMessage v-if="error" :message="error" />
     </div>
 </template>

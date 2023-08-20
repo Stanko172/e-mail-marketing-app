@@ -5,7 +5,7 @@ import {
     TextInput,
     TextInputType,
 } from '@app/components/ui';
-import { Head, useForm } from '@inertiajs/inertia-vue3';
+import { Head, useForm } from '@inertiajs/vue3';
 
 defineProps<{
     canResetPassword: boolean;
