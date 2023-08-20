@@ -4,6 +4,7 @@ export {
     useGenericDataTable,
     type DataTableHeading,
 } from './DataTable';
+export { Form, FormLayout } from './Form';
 export { PageNavigation, PageNavigationItem } from './PageNavigation';
 export { ResourceItem, ResourceList } from './ResourceList';
 export { MultiSelect, Select, type SelectOption } from './Select';

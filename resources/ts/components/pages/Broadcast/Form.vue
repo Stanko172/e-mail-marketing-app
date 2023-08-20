@@ -2,9 +2,11 @@
 import { AppLayout } from '@app/components/layouts';
 import {
     Button,
+    Form,
+    FormLayout,
+    MultiSelect,
     Textarea,
     TextInput,
-    MultiSelect,
     type SelectOption,
 } from '@app/components/ui';
 import { PageNavigation } from '@app/components/partials/Broadcast';
@@ -75,27 +77,29 @@ function submit(): void {
         <template #page-navigation>
             <PageNavigation />
         </template>
-        <pre>{{ form }}</pre>
-        <form @submit.prevent="submit">
-            <div>
+
+        <Form @submit.prevent="submit">
+            <FormLayout>
                 <TextInput label="Subject" v-model="form.subject" />
-            </div>
-            <div>
+            </FormLayout>
+            <FormLayout>
                 <Textarea label="Content" v-model="form.content" />
-            </div>
-            <div>
+            </FormLayout>
+            <FormLayout>
                 <MultiSelect
                     :options="formOptions"
                     v-model="form.filters.form_ids"
                 />
-            </div>
-            <div>
+            </FormLayout>
+            <FormLayout>
                 <MultiSelect
                     :options="tagOptions"
                     v-model="form.filters.tag_ids"
                 />
-            </div>
-            <Button>Submit</Button>
-        </form>
+            </FormLayout>
+            <FormLayout>
+                <Button>Submit</Button>
+            </FormLayout>
+        </Form>
     </AppLayout>
 </template>
