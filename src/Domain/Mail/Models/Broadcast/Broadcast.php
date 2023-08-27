@@ -2,11 +2,13 @@
 
 namespace Domain\Mail\Models\Broadcast;
 
+use Domain\Mail\Builders\Broadcast\BroadcastBuilder;
 use Domain\Mail\DataTransferObjects\Broadcasts\BroadcastData;
 use Domain\Mail\Enums\Broadcast\BroadcastStatus;
 use Domain\Mail\Models\Casts\FiltersCast;
 use Domain\Shared\Models\BaseModel;
 use Domain\Shared\Models\Concerns\HasUser;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Spatie\LaravelData\WithData;
 
 class Broadcast extends BaseModel
@@ -34,4 +36,14 @@ class Broadcast extends BaseModel
     ];
 
     protected $dataClass = BroadcastData::class;
+
+    public function sent_mails(): MorphMany
+    {
+        return $this->morphMany(SentMail::class, 'sendable'); //FIXME: create SentMail class
+    }
+
+    public function newEloquentBuilder($query): BroadcastBuilder
+    {
+        return new BroadcastBuilder($query);
+    }
 }
