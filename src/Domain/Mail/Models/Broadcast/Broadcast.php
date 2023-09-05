@@ -7,6 +7,7 @@ use Domain\Mail\Contracts\Sendable;
 use Domain\Mail\DataTransferObjects\Broadcasts\BroadcastData;
 use Domain\Mail\Enums\Broadcast\BroadcastStatus;
 use Domain\Mail\Models\Casts\FiltersCast;
+use Domain\Mail\Models\SentMail;
 use Domain\Shared\Models\BaseModel;
 use Domain\Shared\Models\Concerns\HasUser;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -40,7 +41,7 @@ class Broadcast extends BaseModel implements Sendable
 
     public function sent_mails(): MorphMany
     {
-        return $this->morphMany(SentMail::class, 'sendable'); //FIXME: create SentMail class
+        return $this->morphMany(SentMail::class, 'sendable');
     }
 
     public function newEloquentBuilder($query): BroadcastBuilder
