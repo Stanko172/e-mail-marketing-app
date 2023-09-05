@@ -20,4 +20,15 @@ class GetBroadcastsViewModel extends ViewModel
     {
         return Broadcast::latest()->get()->map->getData();
     }
+
+    /**
+     * @return Collection<int, PerformanceData>
+     */
+    public function performances(): Collection
+    {
+        return Broadcast::all()
+            ->mapWithKeys(fn (Broadcast $broadcast) => [
+                $broadcast->id => $broadcast->performance(),
+            ]);
+    }
 }
