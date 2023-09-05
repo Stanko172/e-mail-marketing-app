@@ -25,5 +25,6 @@ Route::resource('subscribers', SubscriberController::class);
 
 Route::resource('broadcasts', BroadcastController::class);
 Route::patch('broadcasts/{broadcast}/send', SendBroadcastController::class);
+Route::get('broadcasts/{broadcast}/preview', PreviewBroadcastController::class);
 
 require __DIR__.'/auth.php';
