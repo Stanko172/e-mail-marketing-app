@@ -5,6 +5,7 @@ namespace Domain\Mail\Models\Broadcast;
 use Domain\Mail\Builders\Broadcast\BroadcastBuilder;
 use Domain\Mail\Contracts\Sendable;
 use Domain\Mail\DataTransferObjects\Broadcasts\BroadcastData;
+use Domain\Mail\DataTransferObjects\PerformanceData;
 use Domain\Mail\Enums\Broadcast\BroadcastStatus;
 use Domain\Mail\Models\Casts\FiltersCast;
 use Domain\Mail\Models\SentMail;
@@ -57,5 +58,16 @@ class Broadcast extends BaseModel implements Sendable
     public function type(): string
     {
         return $this::class;
+    }
+
+    public function performance(): PerformanceData
+    {
+        $total = SentMail::countOf($this);
+
+        return new PerformanceData(
+            total: $total,
+            open_rate: $this->openRate($total),
+            click_rate: $this->clickRate($total),
+        );
     }
 }
