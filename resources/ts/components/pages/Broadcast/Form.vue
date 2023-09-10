@@ -6,6 +6,8 @@ import {
     Form,
     FormLayout,
     MultiSelect,
+    PageActions,
+    PageActionsItem,
     Textarea,
     TextInput,
     type SelectOption,
@@ -14,6 +16,7 @@ import { PageNavigation } from '@app/components/partials/Broadcast';
 import * as Types from '@app/types/generated';
 import { useForm } from '@inertiajs/vue3';
 import { computed, onMounted } from 'vue';
+import { router } from '@inertiajs/vue3';
 
 type UpsertBroadcastViewModel =
     Types.Domain.Mail.ViewModels.Broadcast.UpsertBroadcastViewModel;
@@ -71,6 +74,12 @@ function submit(): void {
         );
     }
 }
+
+function send(): void {
+    router.patch(
+        route('broadcasts.send', { broadcast: props.model.broadcast })
+    );
+}
 </script>
 
 <template>
@@ -78,6 +87,18 @@ function submit(): void {
         <template #page-navigation>
             <PageNavigation />
         </template>
+
+        <PageActions>
+            <PageActionsItem>
+                <Button>Preview</Button>
+            </PageActionsItem>
+            <PageActionsItem>
+                <Button @click="send">Send</Button>
+            </PageActionsItem>
+            <PageActionsItem>
+                <Button>Remove</Button>
+            </PageActionsItem>
+        </PageActions>
 
         <Form @submit.prevent="submit">
             <FormLayout>

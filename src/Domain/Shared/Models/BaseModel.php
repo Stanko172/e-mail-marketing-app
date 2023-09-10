@@ -2,6 +2,7 @@
 
 namespace Domain\Shared\Models;
 
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

@@ -34,6 +34,7 @@ class Broadcast extends BaseModel implements Sendable
     protected $casts = [
         'filters' => FiltersCast::class,
         'status' => BroadcastStatus::class,
+        'sent_at' => 'datetime',
     ];
 
     protected $attributes = [
@@ -60,6 +61,16 @@ class Broadcast extends BaseModel implements Sendable
     public function type(): string
     {
         return $this::class;
+    }
+
+    public function subject(): string
+    {
+        return $this->subject;
+    }
+
+    public function content(): string
+    {
+        return $this->content;
     }
 
     public function performance(): PerformanceData
