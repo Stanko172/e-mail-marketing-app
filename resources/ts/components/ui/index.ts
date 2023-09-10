@@ -1,4 +1,4 @@
-export { Button, ButtonType } from './Button';
+export { Button, ButtonType, ButtonVariant } from './Button';
 export {
     DataTable,
     useGenericDataTable,

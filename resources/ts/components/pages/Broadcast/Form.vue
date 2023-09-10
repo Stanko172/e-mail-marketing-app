@@ -11,6 +11,7 @@ import {
     Textarea,
     TextInput,
     type SelectOption,
+    ButtonVariant,
 } from '@app/components/ui';
 import { PageNavigation } from '@app/components/partials/Broadcast';
 import * as Types from '@app/types/generated';
@@ -93,10 +94,12 @@ function send(): void {
                 <Button>Preview</Button>
             </PageActionsItem>
             <PageActionsItem>
-                <Button @click="send">Send</Button>
+                <Button @click="send" :variant="ButtonVariant.Success"
+                    >Send</Button
+                >
             </PageActionsItem>
             <PageActionsItem>
-                <Button>Remove</Button>
+                <Button :variant="ButtonVariant.Critical">Remove</Button>
             </PageActionsItem>
         </PageActions>
 
