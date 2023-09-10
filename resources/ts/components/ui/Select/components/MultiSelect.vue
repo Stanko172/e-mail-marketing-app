@@ -18,7 +18,7 @@ const elementId = props.id || uniqueId('select');
     <div>
         <label
             :for="elementId"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            class="block mb-2 text-sm font-medium text-gray-900"
         >
             Select options
         </label>
