@@ -8,6 +8,7 @@ use Domain\Mail\DataTransferObjects\Broadcasts\BroadcastData;
 use Domain\Mail\DataTransferObjects\PerformanceData;
 use Domain\Mail\Enums\Broadcast\BroadcastStatus;
 use Domain\Mail\Models\Casts\FiltersCast;
+use Domain\Mail\Models\Concerns\HasPerformance;
 use Domain\Mail\Models\SentMail;
 use Domain\Shared\Models\BaseModel;
 use Domain\Shared\Models\Concerns\HasUser;
@@ -18,6 +19,7 @@ class Broadcast extends BaseModel implements Sendable
 {
     use WithData;
     use HasUser;
+    use HasPerformance;
 
     protected $fillable = [
         'id',

@@ -22,8 +22,7 @@ class FilterSubscribersAction
     public static function filters(Broadcast $broadcast): array
     {
         return collect($broadcast->filters->toArray())
-            ->map(fn (array $ids, string $key) =>
-                Filters::from($key)->createFilter($ids)
+            ->map(fn (array $ids, string $key) => Filters::from($key)->createFilter($ids)
             )
             ->values()
             ->all();

@@ -13,7 +13,7 @@ enum Filters: string
 
     public function createFilter(array $ids): Filter
     {
-        return match($this) {
+        return match ($this) {
             self::Tags => new TagFilter($ids),
             self::Forms => new FormFilter($ids),
         };

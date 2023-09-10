@@ -1,4 +1,5 @@
 <?php
+
 namespace Domain\Mail\Actions;
 
 use Domain\Mail\Contracts\Sendable;

@@ -20,17 +20,15 @@ class SendBroadcastAction
         }
 
         $subscribers = FilterSubscribersAction::execute($broadcast)
-            ->each(fn (Subscriber $subscriber) =>
-                Mail::to($subscriber)->queue(new EchoMail($broadcast))
+            ->each(fn (Subscriber $subscriber) => Mail::to($subscriber)->queue(new EchoMail($broadcast))
             );
 
         $broadcast->markAsSent();
 
-        return $subscribers->each(fn (Subscriber $subscriber) =>
-            $broadcast->sent_mails()->create([
-                'subscriber_id' => $subscriber->id,
-                'user_id' => $broadcast->user->id,
-            ])
+        return $subscribers->each(fn (Subscriber $subscriber) => $broadcast->sent_mails()->create([
+            'subscriber_id' => $subscriber->id,
+            'user_id' => $broadcast->user->id,
+        ])
         )->count();
     }
 }

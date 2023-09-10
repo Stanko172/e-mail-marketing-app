@@ -11,5 +11,6 @@ class PerformanceData extends Data
         public readonly int $total,
         public readonly Percent $open_rate,
         public readonly Percent $click_rate,
-    ) {}
+    ) {
+    }
 }
