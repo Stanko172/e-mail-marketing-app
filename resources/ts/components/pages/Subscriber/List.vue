@@ -57,7 +57,7 @@ function nextPage(): void {
             @paginate-previous="previousPage"
             @paginate-next="nextPage"
         >
-            <template #actions="{ item }">edit {{ item.first_name }}</template>
+            <template #actions="{ item }">edit</template>
         </SubscribersDataTable>
     </AppLayout>
 </template>
