@@ -9,7 +9,8 @@ import { PageNavigation, PageNavigationItem } from '@app/components/ui';
             :href="route('broadcasts.index')"
             :active="
                 route().current() === 'broadcasts.index' ||
-                route().current() === 'broadcasts.edit'
+                route().current() === 'broadcasts.edit' ||
+                route().current() === 'broadcasts.create'
             "
         />
         <PageNavigationItem title="Sequences" />
