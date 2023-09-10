@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Web\Controllers\Mail\Broadcast\BroadcastController;
+use App\Http\Web\Controllers\Mail\Broadcast\PreviewBroadcastController;
 use App\Http\Web\Controllers\Mail\Broadcast\SendBroadcastController;
 use App\Http\Web\Controllers\Subscriber\SubscriberController;
 use Illuminate\Support\Facades\Route;
