@@ -23,7 +23,7 @@ class UpsertSequenceMailAction
 
         $mail->schedule()->updateOrCreate(
             [
-                'id' => $data->schedule->id
+                'id' => $data->schedule->id,
             ],
             [
                 ...$data->schedule->toArray(),

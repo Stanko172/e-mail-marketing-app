@@ -11,7 +11,7 @@ enum SequenceMailUnit: string
 
     public function timePassedSince(?Carbon $date): int
     {
-        if (!$date) {
+        if (! $date) {
             return PHP_INT_MAX;
         }
 

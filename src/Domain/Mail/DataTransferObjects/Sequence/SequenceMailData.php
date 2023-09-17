@@ -2,9 +2,9 @@
 
 namespace Domain\Mail\DataTransferObjects\Sequence;
 
+use Domain\Mail\DataTransferObjects\FilterData;
 use Domain\Mail\Enums\Sequence\SequenceMailStatus;
 use Domain\Mail\Models\Sequence\SequenceMail;
-use Domain\Mail\DataTransferObjects\FilterData;
 use Illuminate\Http\Request;
 use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Casts\EnumCast;
@@ -22,7 +22,8 @@ class SequenceMailData extends Data
         public readonly FilterData $filters,
         public readonly null|Lazy|SequenceData $sequence,
         public readonly Lazy|SequenceMailScheduleData $schedule,
-    ) {}
+    ) {
+    }
 
     public static function fromRequest(Request $request): self
     {
@@ -54,7 +55,7 @@ class SequenceMailData extends Data
                 'delay' => 1,
                 'unit' => 'day',
                 'allowed_days' => SequenceMailScheduleAllowedDaysData::empty(),
-            ]
+            ],
         ]);
     }
 }

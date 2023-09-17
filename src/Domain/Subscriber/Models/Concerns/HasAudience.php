@@ -12,6 +12,7 @@ use Illuminate\Support\Collection;
 trait HasAudience
 {
     abstract public function filters(): FilterData;
+
     abstract protected function audienceQuery(): Builder;
 
     /**
@@ -20,7 +21,7 @@ trait HasAudience
     public function audience(): Collection
     {
         $filters = collect($this->filters()->toArray())
-            ->map(fn(array $ids, string $key) => Filters::from($key)->createFilter($ids))
+            ->map(fn (array $ids, string $key) => Filters::from($key)->createFilter($ids))
             ->values()
             ->all();
 

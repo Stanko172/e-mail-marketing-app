@@ -3,7 +3,6 @@
 namespace Domain\Mail\Mails;
 
 use Domain\Mail\Contracts\Sendable;
-use Domain\Mail\Models\Broadcast\Broadcast;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;

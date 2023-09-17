@@ -14,7 +14,8 @@ class SequenceMailScheduleData extends Data
         public readonly int $delay,
         public readonly SequenceMailUnit $unit,
         public readonly SequenceMailScheduleAllowedDaysData $allowed_days,
-    ) {}
+    ) {
+    }
 
     public static function fromArray(array $data): self
     {

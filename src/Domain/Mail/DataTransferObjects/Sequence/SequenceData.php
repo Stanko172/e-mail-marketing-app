@@ -20,7 +20,8 @@ class SequenceData extends Data
         public readonly SequenceStatus $status,
         /** @var DataCollection<SequenceMailData> */
         public readonly null|Lazy|DataCollection $mails,
-    ) {}
+    ) {
+    }
 
     public static function fromRequest(Request $request): self
     {

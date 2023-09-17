@@ -14,7 +14,8 @@ class SequenceMailScheduleAllowedDaysData extends Data
         public readonly bool $friday,
         public readonly bool $saturday,
         public readonly bool $sunday,
-    ) {}
+    ) {
+    }
 
     public static function empty($extra = []): array
     {

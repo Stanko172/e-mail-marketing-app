@@ -38,7 +38,7 @@ class DateFilter
     {
         return [
             $this->startDate,
-            $this->endDate
+            $this->endDate,
         ];
     }
 }
