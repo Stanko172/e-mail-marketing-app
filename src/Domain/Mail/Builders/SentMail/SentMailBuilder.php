@@ -3,6 +3,8 @@
 namespace Domain\Mail\Builders\SentMail;
 
 use Domain\Mail\Contracts\Sendable;
+use Domain\Mail\Models\Sequence\Sequence;
+use Domain\Mail\Models\Sequence\SequenceMail;
 use Illuminate\Database\Eloquent\Builder;
 
 class SentMailBuilder extends Builder
@@ -22,6 +24,13 @@ class SentMailBuilder extends Builder
         return $this
             ->where('sendable_id', $sendable->id())
             ->where('sendable_type', $sendable->type());
+    }
+
+    public function whereSequence(Sequence $sequence): self
+    {
+        return $this
+            ->whereIn('sendable_id', $sequence->mails->pluck('id'))
+            ->where('sendable_type', SequenceMail::class);
     }
 
     public function countOf(Sendable $model): int
