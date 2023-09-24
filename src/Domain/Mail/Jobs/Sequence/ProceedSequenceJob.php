@@ -18,7 +18,7 @@ class ProceedSequenceJob implements ShouldQueue
     {
     }
 
-    public function handle()
+    public function handle(): void
     {
         ProceedSequenceAction::execute($this->sequence);
     }

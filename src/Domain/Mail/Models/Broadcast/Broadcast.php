@@ -58,7 +58,7 @@ class Broadcast extends BaseModel implements Sendable
         return new BroadcastBuilder($query);
     }
 
-    public function id(): string
+    public function id(): int
     {
         return $this->id;
     }
