@@ -7,12 +7,12 @@ use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 
 class SequenceMailScheduleAllowedDaysCast implements CastsAttributes
 {
-    public function get($model, string $key, $value, array $attributes)
+    public function get($model, string $key, $value, array $attributes): SequenceMailScheduleAllowedDaysData
     {
         return SequenceMailScheduleAllowedDaysData::from(json_decode($value, true));
     }
 
-    public function set($model, string $key, $value, array $attributes)
+    public function set($model, string $key, $value, array $attributes): array
     {
         return [
             'allowed_days' => json_encode($value),

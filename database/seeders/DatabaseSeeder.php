@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Database\Seeders\Mail\BroadcastSeeder;
+use Database\Seeders\Mail\SequenceSeeder;
 use Database\Seeders\Subscriber\SubscriberSeeder;
 use Domain\Shared\Models\User;
 use Domain\Subscriber\Models\Form;
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SubscriberSeeder::class,
             BroadcastSeeder::class,
+            SequenceSeeder::class,
         ]);
     }
 
