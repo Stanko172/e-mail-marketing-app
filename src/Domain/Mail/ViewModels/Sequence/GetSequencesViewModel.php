@@ -4,10 +4,12 @@ namespace Domain\Mail\ViewModels\Sequence;
 
 use Domain\Mail\DataTransferObjects\Sequence\SequenceData;
 use Domain\Mail\Models\Sequence\Sequence;
-use Domain\Shared\ViewModels\ViewModel;
+use Spatie\ViewModels\ViewModel;
 use Domain\Mail\DataTransferObjects\PerformanceData;
 use Illuminate\Support\Collection;
+use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
+#[TypeScript]
 class GetSequencesViewModel extends ViewModel
 {
     /**

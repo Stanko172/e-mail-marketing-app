@@ -3,6 +3,7 @@
 use App\Http\Web\Controllers\Mail\Broadcast\BroadcastController;
 use App\Http\Web\Controllers\Mail\Broadcast\PreviewBroadcastController;
 use App\Http\Web\Controllers\Mail\Broadcast\SendBroadcastController;
+use App\Http\Web\Controllers\Mail\Sequence\SequenceController;
 use App\Http\Web\Controllers\Subscriber\SubscriberController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -25,9 +26,9 @@ Route::get('/', function () {
 Route::resource('subscribers', SubscriberController::class);
 
 Route::resource('broadcasts', BroadcastController::class);
-Route::patch('broadcasts/{broadcast}/send', SendBroadcastController::class)
-    ->name('broadcasts.send');
-Route::get('broadcasts/{broadcast}/preview', PreviewBroadcastController::class)
-    ->name('broadcasts.preview');
+Route::patch('broadcasts/{broadcast}/send', SendBroadcastController::class)->name('broadcasts.send');
+Route::get('broadcasts/{broadcast}/preview', PreviewBroadcastController::class)->name('broadcasts.preview');
+
+Route::resource('sequences', SequenceController::class);
 
 require __DIR__.'/auth.php';

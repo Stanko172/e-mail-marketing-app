@@ -13,6 +13,10 @@ import { PageNavigation, PageNavigationItem } from '@app/components/ui';
                 route().current() === 'broadcasts.create'
             "
         />
-        <PageNavigationItem title="Sequences" />
+        <PageNavigationItem
+            title="Sequences"
+            :href="route('sequences.index')"
+            :active="route().current() === 'sequences.index'"
+        />
     </PageNavigation>
 </template>
