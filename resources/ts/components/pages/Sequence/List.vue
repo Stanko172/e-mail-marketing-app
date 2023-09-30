@@ -27,7 +27,7 @@ defineProps<{
 
         <PageActions>
             <PageActionsItem>
-                <Button @click="router.get(route('broadcasts.create'))">
+                <Button @click="router.get(route('sequences.create'))">
                     Create sequence
                 </Button>
             </PageActionsItem>

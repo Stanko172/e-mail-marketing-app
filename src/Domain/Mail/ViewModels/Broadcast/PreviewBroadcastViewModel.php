@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Domain\Mail\ViewModels\Broadcast;
 
 use Domain\Mail\Mails\EchoMail;

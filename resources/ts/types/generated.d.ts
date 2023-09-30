@@ -18,6 +18,8 @@ broadcast: any | null;
 };
 }
 export namespace Domain.Mail.ViewModels.Sequence {
+export type CreateSequenceViewModel = {
+};
 export type GetSequencesViewModel = {
 sequences: Array<any>;
 performances: { [key: number]: any };

@@ -16,7 +16,10 @@ import { PageNavigation, PageNavigationItem } from '@app/components/ui';
         <PageNavigationItem
             title="Sequences"
             :href="route('sequences.index')"
-            :active="route().current() === 'sequences.index'"
+            :active="
+                route().current() === 'sequences.index' ||
+                route().current() === 'sequences.create'
+            "
         />
     </PageNavigation>
 </template>

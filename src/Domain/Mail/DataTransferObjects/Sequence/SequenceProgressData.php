@@ -10,5 +10,6 @@ class SequenceProgressData extends Data
         public readonly int $total,
         public readonly int $in_progress,
         public readonly int $completed,
-    ) {}
+    ) {
+    }
 }
