@@ -3,7 +3,7 @@ import { AppLayout } from '@app/components/layouts';
 import { PageNavigation } from '@app/components/partials/Broadcast';
 import { Button, PageActions, PageActionsItem } from '@app/components/ui';
 import * as Types from '@app/types/generated';
-import axios from 'axios';
+import { http } from '@app/services/';
 
 type EditSequenceContentViewModel =
     Types.Domain.Mail.ViewModels.Sequence.EditSequenceContentViewModel;
@@ -13,10 +13,12 @@ const props = defineProps<{
 }>();
 
 async function publish(): Promise<void> {
-    const { data } = await axios.patch(
+    const { status } = await http.patch<{ status: string }>(
         `/sequences/${props.model.sequence.id}/publish`
     );
-    console.log('new status: ', data.status);
+
+    console.log('new status: ', status);
+
     // props.model.sequence.status = data.status;
 }
 </script>
