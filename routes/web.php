@@ -31,6 +31,6 @@ Route::patch('broadcasts/{broadcast}/send', SendBroadcastController::class)->nam
 Route::get('broadcasts/{broadcast}/preview', PreviewBroadcastController::class)->name('broadcasts.preview');
 
 Route::resource('sequences', SequenceController::class);
-Route::patch('sequences/{sequence}/publish', PublishSequenceController::class);
+Route::patch('sequences/{sequence}/publish', PublishSequenceController::class)->name('sequences.publish');
 
 require __DIR__.'/auth.php';

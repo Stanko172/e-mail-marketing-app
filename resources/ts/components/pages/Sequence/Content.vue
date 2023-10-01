@@ -14,7 +14,7 @@ const props = defineProps<{
 
 async function publish(): Promise<void> {
     const { status } = await http.patch<{ status: string }>(
-        `/sequences/${props.model.sequence.id}/publish`
+        route('sequences.publish', { sequence: props.model.sequence.id })
     );
 
     console.log('new status: ', status);
