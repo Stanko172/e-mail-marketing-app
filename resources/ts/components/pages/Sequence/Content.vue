@@ -1,7 +1,12 @@
 <script lang="ts" setup>
 import { AppLayout } from '@app/components/layouts';
 import { PageNavigation } from '@app/components/partials/Broadcast';
-import { Button, PageActions, PageActionsItem } from '@app/components/ui';
+import {
+    Button,
+    DataTable,
+    PageActions,
+    PageActionsItem,
+} from '@app/components/ui';
 import * as Types from '@app/types/generated';
 import { http } from '@app/services/';
 
@@ -40,7 +45,19 @@ async function publish(): Promise<void> {
                 >
                     Publish
                 </Button>
+                <Button @click="publish"> Add e-mail </Button>
             </PageActionsItem>
         </PageActions>
+
+        <DataTable
+            :items="model.sequence.mails"
+            :headings="[
+                {
+                    key: 'subject',
+                    title: 'Subject',
+                },
+            ]"
+        >
+        </DataTable>
     </AppLayout>
 </template>

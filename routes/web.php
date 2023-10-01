@@ -33,4 +33,6 @@ Route::get('broadcasts/{broadcast}/preview', PreviewBroadcastController::class)-
 Route::resource('sequences', SequenceController::class);
 Route::patch('sequences/{sequence}/publish', PublishSequenceController::class)->name('sequences.publish');
 
+Route::resource('sequences/{sequence}/mails', SequenceMailController::class);
+
 require __DIR__.'/auth.php';

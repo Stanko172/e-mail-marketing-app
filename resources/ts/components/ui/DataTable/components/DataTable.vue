@@ -11,8 +11,8 @@ const props = defineProps<{
 }>();
 
 defineEmits<{
-    (e: 'paginate-previous', id: number): void;
-    (e: 'paginate-next', value: string): void;
+    (e: 'paginate-previous'): void;
+    (e: 'paginate-next'): void;
 }>();
 
 const hasActions = computed<boolean>(() => {
