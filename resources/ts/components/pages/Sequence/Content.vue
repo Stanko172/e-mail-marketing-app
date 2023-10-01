@@ -9,6 +9,7 @@ import {
 } from '@app/components/ui';
 import * as Types from '@app/types/generated';
 import { http } from '@app/services/';
+import { ref, watch } from 'vue';
 
 type EditSequenceContentViewModel =
     Types.Domain.Mail.ViewModels.Sequence.EditSequenceContentViewModel;
@@ -16,6 +17,9 @@ type EditSequenceContentViewModel =
 const props = defineProps<{
     model: EditSequenceContentViewModel;
 }>();
+
+const mails = ref(props.model.sequence.mails);
+const selectedMail = ref(null);
 
 async function publish(): Promise<void> {
     const { status } = await http.patch<{ status: string }>(
@@ -26,6 +30,26 @@ async function publish(): Promise<void> {
 
     // props.model.sequence.status = data.status;
 }
+
+function addMail(): void {
+    selectedMail.value = props.model.dummyMail;
+    mails.value.push(selectedMail.value);
+}
+
+watch(selectedMail, async (newSelectedMail) => {
+    if (!newSelectedMail.id) {
+        const { id, schedule } = await http.post<{
+            id: string;
+            schedule: string;
+        }>(
+            `/sequences/${props.model.sequence.id}/mails`,
+            props.model.dummyMail
+        );
+
+        selectedMail.value.id = id;
+        selectedMail.value.schedule = schedule;
+    }
+});
 </script>
 
 <template>
@@ -45,12 +69,12 @@ async function publish(): Promise<void> {
                 >
                     Publish
                 </Button>
-                <Button @click="publish"> Add e-mail </Button>
+                <Button @click="addMail"> Add e-mail </Button>
             </PageActionsItem>
         </PageActions>
 
         <DataTable
-            :items="model.sequence.mails"
+            :items="mails"
             :headings="[
                 {
                     key: 'subject',

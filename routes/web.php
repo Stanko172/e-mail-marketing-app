@@ -5,6 +5,7 @@ use App\Http\Web\Controllers\Mail\Broadcast\PreviewBroadcastController;
 use App\Http\Web\Controllers\Mail\Broadcast\SendBroadcastController;
 use App\Http\Web\Controllers\Mail\Sequence\PublishSequenceController;
 use App\Http\Web\Controllers\Mail\Sequence\SequenceController;
+use App\Http\Web\Controllers\Mail\Sequence\SequenceMailController;
 use App\Http\Web\Controllers\Subscriber\SubscriberController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
