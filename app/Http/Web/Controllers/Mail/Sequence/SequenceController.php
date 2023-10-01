@@ -4,7 +4,9 @@ namespace App\Http\Web\Controllers\Mail\Sequence;
 
 use Domain\Mail\Actions\Sequence\CreateSequenceAction;
 use Domain\Mail\DataTransferObjects\Sequence\SequenceData;
+use Domain\Mail\Models\Sequence\Sequence;
 use Domain\Mail\ViewModels\Sequence\CreateSequenceViewModel;
+use Domain\Mail\ViewModels\Sequence\EditSequenceContentViewModel;
 use Domain\Mail\ViewModels\Sequence\GetSequencesViewModel;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -35,5 +37,12 @@ class SequenceController
         );
 
         return to_route('sequences.edit', $sequence);
+    }
+
+    public function edit(Sequence $sequence): InertiaResponse
+    {
+        return Inertia::render('Sequence/Content', [
+            'model' => new EditSequenceContentViewModel($sequence),
+        ]);
     }
 }

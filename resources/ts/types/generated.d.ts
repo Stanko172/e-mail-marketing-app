@@ -20,6 +20,13 @@ broadcast: any | null;
 export namespace Domain.Mail.ViewModels.Sequence {
 export type CreateSequenceViewModel = {
 };
+export type EditSequenceContentViewModel = {
+sequence: any;
+performance: any;
+dummyMail: any;
+tags: Array<any>;
+forms: Array<any>;
+};
 export type GetSequencesViewModel = {
 sequences: Array<any>;
 performances: { [key: number]: any };
