@@ -1,5 +1,3 @@
-import * as Types from './generated';
-
 type ToastNotificationVariant = 'success' | 'critical' | 'warning' | 'default';
 
 interface ToastNotification {

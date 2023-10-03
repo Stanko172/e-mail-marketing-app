@@ -3,13 +3,21 @@ import { AppLayout } from '@app/components/layouts';
 import { PageNavigation } from '@app/components/partials/Broadcast';
 import {
     Button,
+    Checkbox,
     DataTable,
+    Form,
+    FormLayout,
+    Modal,
+    MultiSelect,
     PageActions,
     PageActionsItem,
+    Select,
+    SelectOption,
+    TextInput,
 } from '@app/components/ui';
 import * as Types from '@app/types/generated';
 import { http } from '@app/services/';
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 type EditSequenceContentViewModel =
     Types.Domain.Mail.ViewModels.Sequence.EditSequenceContentViewModel;
@@ -49,6 +57,39 @@ watch(selectedMail, async (newSelectedMail) => {
         selectedMail.value.id = id;
         selectedMail.value.schedule = schedule;
     }
+
+    modal.value.show();
+});
+
+const modal = ref<HTMLDialogElement>(null);
+
+const scheduleOptions: SelectOption[] = [
+    {
+        title: 'Day',
+        value: 'day',
+    },
+    {
+        title: 'Hour',
+        value: 'hour',
+    },
+];
+
+const formOptions = computed<SelectOption[]>(() => {
+    //@ts-ignore
+    //TODO: update type transformer to recognize types from traits
+    return props.model.forms.map((form) => ({
+        title: form.title,
+        value: form.id,
+    }));
+});
+
+const tagOptions = computed<SelectOption[]>(() => {
+    //@ts-ignore
+    //TODO: update type transformer to recognize types from traits
+    return props.model.tags.map((tag) => ({
+        title: tag.title,
+        value: tag.id,
+    }));
 });
 </script>
 
@@ -83,5 +124,43 @@ watch(selectedMail, async (newSelectedMail) => {
             ]"
         >
         </DataTable>
+
+        <Modal ref="modal">
+            <div class="flex space-x-2 mb-4">
+                <Button> Preview </Button>
+                <Button> Publish </Button>
+                <Button> Unpublish </Button>
+                <Button> Remove </Button>
+            </div>
+
+            <Form>
+                <FormLayout>
+                    <TextInput label="Subject" />
+                </FormLayout>
+                <FormLayout>
+                    <TextInput label="Content" />
+                </FormLayout>
+                <FormLayout>
+                    <Select :options="scheduleOptions" />
+                </FormLayout>
+                <FormLayout>
+                    <div class="space-x-2">
+                        <Checkbox label="Mon" />
+                        <Checkbox label="Tue" />
+                        <Checkbox label="Wed" />
+                        <Checkbox label="Thur" />
+                        <Checkbox label="Fri" />
+                        <Checkbox label="Sat" />
+                        <Checkbox label="Sun" />
+                    </div>
+                </FormLayout>
+                <FormLayout>
+                    <MultiSelect :options="formOptions" />
+                </FormLayout>
+                <FormLayout>
+                    <MultiSelect :options="tagOptions" />
+                </FormLayout>
+            </Form>
+        </Modal>
     </AppLayout>
 </template>
