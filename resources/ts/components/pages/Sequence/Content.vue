@@ -126,6 +126,13 @@ function changeSelectedMail(mail: object): void {
             </PageActionsItem>
         </PageActions>
 
+        <!--TODO: Create new PerformanceLine component-->
+        <div class="text-sm text-gray-900 my-6">
+            {{ model.performance.total }} Subscribers •
+            {{ model.performance.open_rate.formatted }} Open rate •
+            {{ model.performance.click_rate.formatted }} Click rate
+        </div>
+
         <DataTable
             :items="mails"
             :headings="[
