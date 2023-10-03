@@ -103,6 +103,20 @@ const tagOptions = computed<SelectOption[]>(() => {
 function changeSelectedMail(mail: object): void {
     selectedMail.value = mail;
 }
+
+async function removeMail(): Promise<void> {
+    await http.delete(
+        `/sequences/${props.model.sequence.id}/mails/${selectedMail.value.id}`
+    );
+
+    mails.value = mails.value.filter((m) => m.id !== selectedMail.value.id);
+
+    if (mails.value.length) {
+        selectedMail.value = mails.value[0];
+    } else {
+        selectedMail.value = null;
+    }
+}
 </script>
 
 <template>
@@ -164,7 +178,7 @@ function changeSelectedMail(mail: object): void {
                     >
                         Unpublish
                     </Button>
-                    <Button> Remove </Button>
+                    <Button @click="removeMail"> Remove </Button>
                 </div>
                 <Form @submit.prevent="updateMail(selectedMail)">
                     <FormLayout>
