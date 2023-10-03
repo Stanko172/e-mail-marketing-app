@@ -152,8 +152,18 @@ function changeSelectedMail(mail: object): void {
             <template v-if="selectedMail">
                 <div class="flex space-x-2 mb-4">
                     <Button> Preview </Button>
-                    <Button> Publish </Button>
-                    <Button> Unpublish </Button>
+                    <Button
+                        v-if="selectedMail.status === 'draft'"
+                        @click="selectedMail.status = 'published'"
+                    >
+                        Publish
+                    </Button>
+                    <Button
+                        v-if="selectedMail.status === 'published'"
+                        @click="selectedMail.status = 'draft'"
+                    >
+                        Unpublish
+                    </Button>
                     <Button> Remove </Button>
                 </div>
                 <Form @submit.prevent="updateMail(selectedMail)">
