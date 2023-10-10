@@ -7,6 +7,7 @@ export {
 } from './DataTable';
 export { ErrorMessage } from './ErrorMessage';
 export { Form, FormLayout } from './Form';
+export { Page } from './Page';
 export { PageActions, PageActionsItem } from './PageActions';
 export { PageNavigation, PageNavigationItem } from './PageNavigation';
 export { ResourceItem, ResourceList } from './ResourceList';
