@@ -74,7 +74,7 @@ const itemsByHeadings = computed(() => {
                         </slot>
                     </td>
 
-                    <td v-if="hasActions">
+                    <td v-if="hasActions" class="px-6 py-4">
                         <slot name="actions" :item="items[index]"></slot>
                     </td>
                 </tr>
