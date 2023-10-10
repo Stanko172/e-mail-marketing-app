@@ -166,111 +166,102 @@ async function removeMail(): Promise<void> {
             </template>
         </DataTable>
 
-        <Modal ref="modal" @close="selectedMail = null">
-            <template v-if="selectedMail">
-                <div class="flex space-x-2 mb-4">
-                    <Button> Preview </Button>
-                    <Button
-                        v-if="selectedMail.status === 'draft'"
-                        @click="selectedMail.status = 'published'"
-                    >
-                        Publish
-                    </Button>
-                    <Button
-                        v-if="selectedMail.status === 'published'"
-                        @click="selectedMail.status = 'draft'"
-                    >
-                        Unpublish
-                    </Button>
-                    <Button @click="removeMail"> Remove </Button>
-                </div>
-                <Form @submit.prevent="updateMail(selectedMail)">
-                    <FormLayout>
-                        <TextInput
-                            label="Subject"
-                            v-model="selectedMail.subject"
+        <Modal ref="modal" @close="selectedMail = null" title="Edit Sequence">
+            <Form
+                v-if="selectedMail"
+                @submit.prevent="updateMail(selectedMail)"
+            >
+                <FormLayout>
+                    <TextInput label="Subject" v-model="selectedMail.subject" />
+                </FormLayout>
+                <FormLayout>
+                    <TextInput label="Content" v-model="selectedMail.content" />
+                </FormLayout>
+                <FormLayout>
+                    <TextInput
+                        label="Delay"
+                        v-model="selectedMail.schedule.delay"
+                    />
+                </FormLayout>
+                <FormLayout>
+                    <Select
+                        :options="scheduleOptions"
+                        v-model="selectedMail.schedule.unit"
+                    />
+                </FormLayout>
+                <FormLayout>
+                    <div class="space-x-2">
+                        <Checkbox
+                            label="Mon"
+                            v-model="selectedMail.schedule.allowed_days.monday"
                         />
-                    </FormLayout>
-                    <FormLayout>
-                        <TextInput
-                            label="Content"
-                            v-model="selectedMail.content"
+                        <Checkbox
+                            label="Tue"
+                            v-model="selectedMail.schedule.allowed_days.tuesday"
                         />
-                    </FormLayout>
-                    <FormLayout>
-                        <TextInput
-                            label="Delay"
-                            v-model="selectedMail.schedule.delay"
+                        <Checkbox
+                            label="Wed"
+                            v-model="
+                                selectedMail.schedule.allowed_days.wednesday
+                            "
                         />
-                    </FormLayout>
-                    <FormLayout>
-                        <Select
-                            :options="scheduleOptions"
-                            v-model="selectedMail.schedule.unit"
+                        <Checkbox
+                            label="Thur"
+                            v-model="
+                                selectedMail.schedule.allowed_days.thursday
+                            "
                         />
-                    </FormLayout>
-                    <FormLayout>
-                        <div class="space-x-2">
-                            <Checkbox
-                                label="Mon"
-                                v-model="
-                                    selectedMail.schedule.allowed_days.monday
-                                "
-                            />
-                            <Checkbox
-                                label="Tue"
-                                v-model="
-                                    selectedMail.schedule.allowed_days.tuesday
-                                "
-                            />
-                            <Checkbox
-                                label="Wed"
-                                v-model="
-                                    selectedMail.schedule.allowed_days.wednesday
-                                "
-                            />
-                            <Checkbox
-                                label="Thur"
-                                v-model="
-                                    selectedMail.schedule.allowed_days.thursday
-                                "
-                            />
-                            <Checkbox
-                                label="Fri"
-                                v-model="
-                                    selectedMail.schedule.allowed_days.friday
-                                "
-                            />
-                            <Checkbox
-                                label="Sat"
-                                v-model="
-                                    selectedMail.schedule.allowed_days.saturday
-                                "
-                            />
-                            <Checkbox
-                                label="Sun"
-                                v-model="
-                                    selectedMail.schedule.allowed_days.sunday
-                                "
-                            />
-                        </div>
-                    </FormLayout>
-                    <FormLayout>
-                        <MultiSelect
-                            :options="formOptions"
-                            v-model="selectedMail.filters.form_ids"
+                        <Checkbox
+                            label="Fri"
+                            v-model="selectedMail.schedule.allowed_days.friday"
                         />
-                    </FormLayout>
-                    <FormLayout>
-                        <MultiSelect
-                            :options="tagOptions"
-                            v-model="selectedMail.filters.tag_ids"
+                        <Checkbox
+                            label="Sat"
+                            v-model="
+                                selectedMail.schedule.allowed_days.saturday
+                            "
                         />
-                    </FormLayout>
-                    <FormLayout>
+                        <Checkbox
+                            label="Sun"
+                            v-model="selectedMail.schedule.allowed_days.sunday"
+                        />
+                    </div>
+                </FormLayout>
+                <FormLayout>
+                    <MultiSelect
+                        :options="formOptions"
+                        v-model="selectedMail.filters.form_ids"
+                    />
+                </FormLayout>
+                <FormLayout>
+                    <MultiSelect
+                        :options="tagOptions"
+                        v-model="selectedMail.filters.tag_ids"
+                    />
+                </FormLayout>
+            </Form>
+            <template #actions>
+                <div v-if="selectedMail" class="flex">
+                    <div class="flex space-x-2 mb-4 max-w-sm">
+                        <Button> Preview </Button>
+                        <Button
+                            v-if="selectedMail.status === 'draft'"
+                            @click="selectedMail.status = 'published'"
+                        >
+                            Publish
+                        </Button>
+                        <Button
+                            v-if="selectedMail.status === 'published'"
+                            @click="selectedMail.status = 'draft'"
+                        >
+                            Unpublish
+                        </Button>
+                        <Button @click="removeMail"> Remove </Button>
+                    </div>
+                    <div class="ml-auto">
                         <Button :type="ButtonType.Submit">Submit</Button>
-                    </FormLayout>
-                </Form>
+                    </div>
+                </div>
             </template>
         </Modal>
     </AppLayout>
