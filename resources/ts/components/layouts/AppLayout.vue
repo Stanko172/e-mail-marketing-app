@@ -6,13 +6,39 @@ import { NavigationLink } from './types';
 useToastNotifications();
 
 const navigationLinks: NavigationLink[] = [
-    { id: 1, name: 'Home', route: 'home' },
-    { id: 2, name: 'Subscribers', route: 'subscribers.index' },
-    { id: 3, name: 'Mails', route: 'broadcasts.index' },
+    { id: 1, name: 'Home', route: 'home', group: 'home' },
+    {
+        id: 2,
+        name: 'Subscribers',
+        route: 'subscribers.index',
+        group: 'subscribers',
+    },
+    {
+        id: 3,
+        name: 'Mails',
+        route: 'broadcasts.index',
+        group: ['broadcasts', 'sequences'],
+    },
 ];
 
 function logout(): void {
     router.post(route('logout'));
+}
+
+function isActive(group: NavigationLink['group']): boolean {
+    const currentRoute: string = route().current();
+
+    if (typeof group === 'string') {
+        return currentRoute.includes(group);
+    }
+
+    if (typeof group === 'object') {
+        return group
+            .map((item) => currentRoute.includes(item))
+            .some((item) => item === true);
+    }
+
+    return false;
 }
 </script>
 
@@ -74,7 +100,7 @@ function logout(): void {
                                     :href="route(link.route)"
                                     class="py-2 pl-3 pr-4"
                                     :class="
-                                        route().current() === link.route
+                                        isActive(link.group)
                                             ? 'text-blue-700'
                                             : 'text-gray-700'
                                     "

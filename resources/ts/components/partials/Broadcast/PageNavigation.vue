@@ -18,6 +18,7 @@ import { PageNavigation, PageNavigationItem } from '@app/components/ui';
             :href="route('sequences.index')"
             :active="
                 route().current() === 'sequences.index' ||
+                route().current() === 'sequences.edit' ||
                 route().current() === 'sequences.create'
             "
         />
