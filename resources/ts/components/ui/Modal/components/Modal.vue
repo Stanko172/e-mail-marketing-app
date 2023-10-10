@@ -1,5 +1,9 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
+
+const emit = defineEmits<{
+    close: [];
+}>();
 
 const dialog = ref<HTMLDialogElement | null>(null);
 
@@ -9,12 +13,16 @@ function show(): void {
 
 function close(): void {
     dialog.value?.close();
+    emit('close');
 }
 
 defineExpose({
     close,
     show,
 });
+
+onMounted(() => dialog.value.addEventListener('close', close));
+onUnmounted(() => dialog.value.removeEventListener('close', close));
 </script>
 
 <template>

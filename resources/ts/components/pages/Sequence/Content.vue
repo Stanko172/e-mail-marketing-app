@@ -46,6 +46,10 @@ function addMail(): void {
 }
 
 watch(selectedMail, async (newSelectedMail) => {
+    if (!newSelectedMail) {
+        return;
+    }
+
     if (!newSelectedMail.id) {
         const { id, schedule } = await http.post<{
             id: string;
@@ -162,7 +166,7 @@ async function removeMail(): Promise<void> {
             </template>
         </DataTable>
 
-        <Modal ref="modal">
+        <Modal ref="modal" @close="selectedMail = null">
             <template v-if="selectedMail">
                 <div class="flex space-x-2 mb-4">
                     <Button> Preview </Button>
