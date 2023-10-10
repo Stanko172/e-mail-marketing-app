@@ -10,6 +10,7 @@ import {
     FormLayout,
     Modal,
     MultiSelect,
+    Page,
     PageActions,
     PageActionsItem,
     Select,
@@ -129,52 +130,51 @@ async function removeMail(): Promise<void> {
             <PageNavigation />
         </template>
 
-        <!--TODO: move this under sthe AppLayout component and expose through slots-->
-        <div class="flex items-center justify-between">
-            <div class="flex flex-col space-y-1">
-                <h2 class="text-2xl font-bold leading-7 text-gray-900">
-                    {{ model.sequence.title }}
-                </h2>
-                <p class="text-sm text-gray-500 my-6">
-                    {{ model.performance.total }} Subscribers •
-                    {{ model.performance.open_rate.formatted }} Open rate •
-                    {{ model.performance.click_rate.formatted }} Click rate
-                </p>
-            </div>
-            <PageActions>
-                <PageActionsItem>
-                    <Button>See reports</Button>
-                </PageActionsItem>
-                <PageActionsItem>
-                    <Button
-                        v-if="model.sequence.status === 'draft'"
-                        @click="publish"
-                    >
-                        Publish
-                    </Button>
-                    <Button @click="addMail"> Add e-mail </Button>
-                </PageActionsItem>
-            </PageActions>
-        </div>
-
-        <DataTable
-            :items="mails"
-            :headings="[
-                {
-                    key: 'subject',
-                    title: 'Subject',
-                },
-                {
-                    key: 'actions',
-                    title: 'Actions',
-                },
-            ]"
-            @selected="changeSelectedMail"
-        >
-            <template #actions="{ item }">
-                <Button plain @click="changeSelectedMail(item)">Edit</Button>
+        <Page :title="model.sequence.title">
+            <template #description>
+                {{ model.performance.total }} Subscribers •
+                {{ model.performance.open_rate.formatted }} Open rate •
+                {{ model.performance.click_rate.formatted }} Click rate
             </template>
-        </DataTable>
+
+            <template #page-actions>
+                <PageActions>
+                    <PageActionsItem>
+                        <Button>See reports</Button>
+                    </PageActionsItem>
+                    <PageActionsItem>
+                        <Button
+                            v-if="model.sequence.status === 'draft'"
+                            @click="publish"
+                        >
+                            Publish
+                        </Button>
+                        <Button @click="addMail"> Add e-mail </Button>
+                    </PageActionsItem>
+                </PageActions>
+            </template>
+
+            <DataTable
+                :items="mails"
+                :headings="[
+                    {
+                        key: 'subject',
+                        title: 'Subject',
+                    },
+                    {
+                        key: 'actions',
+                        title: 'Actions',
+                    },
+                ]"
+                @selected="changeSelectedMail"
+            >
+                <template #actions="{ item }">
+                    <Button plain @click="changeSelectedMail(item)"
+                        >Edit</Button
+                    >
+                </template>
+            </DataTable>
+        </Page>
 
         <Modal ref="modal" @close="selectedMail = null" title="Edit Sequence">
             <Form

@@ -3,15 +3,16 @@ import { AppLayout } from '@app/components/layouts';
 import {
     Button,
     ButtonType,
+    ButtonVariant,
     Form,
     FormLayout,
     MultiSelect,
+    Page,
     PageActions,
     PageActionsItem,
     Textarea,
     TextInput,
     type SelectOption,
-    ButtonVariant,
 } from '@app/components/ui';
 import { PageNavigation } from '@app/components/partials/Broadcast';
 import * as Types from '@app/types/generated';
@@ -89,52 +90,58 @@ function send(): void {
             <PageNavigation />
         </template>
 
-        <PageActions>
-            <PageActionsItem>
-                <Button>Preview</Button>
-            </PageActionsItem>
-            <PageActionsItem>
-                <Button @click="send" :variant="ButtonVariant.Success"
-                    >Send</Button
-                >
-            </PageActionsItem>
-            <PageActionsItem>
-                <Button :variant="ButtonVariant.Critical">Remove</Button>
-            </PageActionsItem>
-        </PageActions>
+        <Page title="Edit Broadcast">
+            <template #page-actions>
+                <PageActions>
+                    <PageActionsItem>
+                        <Button>Preview</Button>
+                    </PageActionsItem>
+                    <PageActionsItem>
+                        <Button @click="send" :variant="ButtonVariant.Success"
+                            >Send</Button
+                        >
+                    </PageActionsItem>
+                    <PageActionsItem>
+                        <Button :variant="ButtonVariant.Critical"
+                            >Remove</Button
+                        >
+                    </PageActionsItem>
+                </PageActions>
+            </template>
 
-        <Form @submit.prevent="submit">
-            <FormLayout>
-                <TextInput
-                    label="Subject"
-                    v-model="form.subject"
-                    :error="form.errors['subject']"
-                />
-            </FormLayout>
-            <FormLayout>
-                <Textarea
-                    label="Content"
-                    v-model="form.content"
-                    :error="form.errors['content']"
-                />
-            </FormLayout>
-            <FormLayout>
-                <MultiSelect
-                    :options="formOptions"
-                    v-model="form.filters.form_ids"
-                    :error="form.errors['filters.form_ids']"
-                />
-            </FormLayout>
-            <FormLayout>
-                <MultiSelect
-                    :options="tagOptions"
-                    v-model="form.filters.tag_ids"
-                    :error="form.errors['filters.tag_ids']"
-                />
-            </FormLayout>
-            <FormLayout>
-                <Button :type="ButtonType.Submit">Submit</Button>
-            </FormLayout>
-        </Form>
+            <Form @submit.prevent="submit">
+                <FormLayout>
+                    <TextInput
+                        label="Subject"
+                        v-model="form.subject"
+                        :error="form.errors['subject']"
+                    />
+                </FormLayout>
+                <FormLayout>
+                    <Textarea
+                        label="Content"
+                        v-model="form.content"
+                        :error="form.errors['content']"
+                    />
+                </FormLayout>
+                <FormLayout>
+                    <MultiSelect
+                        :options="formOptions"
+                        v-model="form.filters.form_ids"
+                        :error="form.errors['filters.form_ids']"
+                    />
+                </FormLayout>
+                <FormLayout>
+                    <MultiSelect
+                        :options="tagOptions"
+                        v-model="form.filters.tag_ids"
+                        :error="form.errors['filters.tag_ids']"
+                    />
+                </FormLayout>
+                <FormLayout>
+                    <Button :type="ButtonType.Submit">Submit</Button>
+                </FormLayout>
+            </Form>
+        </Page>
     </AppLayout>
 </template>

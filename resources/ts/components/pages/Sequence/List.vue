@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import {
     Button,
+    Page,
     PageActions,
     PageActionsItem,
     ResourceItem,
@@ -25,22 +26,26 @@ defineProps<{
             <PageNavigation />
         </template>
 
-        <PageActions>
-            <PageActionsItem>
-                <Button @click="router.get(route('sequences.create'))">
-                    Create sequence
-                </Button>
-            </PageActionsItem>
-        </PageActions>
+        <Page title="Sequences">
+            <template #page-actions>
+                <PageActions>
+                    <PageActionsItem>
+                        <Button @click="router.get(route('sequences.create'))">
+                            Create sequence
+                        </Button>
+                    </PageActionsItem>
+                </PageActions>
+            </template>
 
-        <ResourceList>
-            <ResourceItem
-                v-for="sequence in model.sequences"
-                :key="sequence.id"
-                :title="sequence.title"
-                :description="sequence.sent_at"
-                :href="route('sequences.edit', sequence.id)"
-            />
-        </ResourceList>
+            <ResourceList>
+                <ResourceItem
+                    v-for="sequence in model.sequences"
+                    :key="sequence.id"
+                    :title="sequence.title"
+                    :description="sequence.sent_at"
+                    :href="route('sequences.edit', sequence.id)"
+                />
+            </ResourceList>
+        </Page>
     </AppLayout>
 </template>
