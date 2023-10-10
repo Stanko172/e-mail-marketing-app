@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import { AppLayout } from '@app/components/layouts';
-import { useGenericDataTable, type DataTableHeading } from '@app/components/ui';
+import {
+    Button,
+    useGenericDataTable,
+    type DataTableHeading,
+} from '@app/components/ui';
 import * as Types from '@app/types/generated';
 import { router } from '@inertiajs/vue3';
 
@@ -57,7 +61,9 @@ function nextPage(): void {
             @paginate-previous="previousPage"
             @paginate-next="nextPage"
         >
-            <template #actions="{ item }">edit</template>
+            <template #actions="{ item }">
+                <Button plain>Edit</Button>
+            </template>
         </SubscribersDataTable>
     </AppLayout>
 </template>

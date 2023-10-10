@@ -166,7 +166,7 @@ async function removeMail(): Promise<void> {
             @selected="changeSelectedMail"
         >
             <template #actions="{ item }">
-                <button @click="changeSelectedMail(item)">Edit</button>
+                <Button plain @click="changeSelectedMail(item)">Edit</Button>
             </template>
         </DataTable>
 
