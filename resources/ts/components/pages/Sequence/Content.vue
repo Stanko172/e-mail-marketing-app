@@ -158,6 +158,10 @@ async function removeMail(): Promise<void> {
                     key: 'subject',
                     title: 'Subject',
                 },
+                {
+                    key: 'actions',
+                    title: 'Actions',
+                },
             ]"
             @selected="changeSelectedMail"
         >
