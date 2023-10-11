@@ -48,6 +48,7 @@ function addMail(): void {
 
 watch(selectedMail, async (newSelectedMail) => {
     if (!newSelectedMail) {
+        modal.value.close();
         return;
     }
 

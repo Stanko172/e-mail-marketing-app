@@ -35,7 +35,11 @@ onMounted(() => dialog.value.addEventListener('close', close));
             <h3 v-if="title" class="text-xl font-semibold text-gray-900">
                 {{ title }}
             </h3>
-            <Icon icon="heroicons-solid:x" class="ml-auto" />
+            <Icon
+                icon="heroicons-solid:x"
+                class="ml-auto cursor-pointer text-slate-500 hover:text-slate-700"
+                @click="$emit('close')"
+            />
         </div>
         <div class="my-6">
             <slot />
