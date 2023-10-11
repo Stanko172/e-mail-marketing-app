@@ -76,11 +76,6 @@ async function updateMail(mail: { id: string }): Promise<void> {
 
 const modal = ref<HTMLDialogElement>(null);
 
-function closeModal(): void {
-    modal.value.close();
-    selectedMail.value = null;
-}
-
 const scheduleOptions: SelectOption[] = [
     {
         title: 'Day',
@@ -127,7 +122,20 @@ async function removeMail(): Promise<void> {
         selectedMail.value = null;
     }
 
-    closeModal();
+    modal.value.close();
+}
+
+const previewContent = ref<string>(null);
+
+async function preview(): Promise<void> {
+    const result = await http.get<string>(
+        route('sequences.mails.preview', {
+            sequence: props.model.sequence,
+            mail: selectedMail.value,
+        })
+    );
+
+    previewContent.value = result;
 }
 </script>
 
@@ -180,9 +188,15 @@ async function removeMail(): Promise<void> {
             </DataTable>
         </Page>
 
-        <Modal ref="modal" @close="closeModal" title="Edit Sequence">
+        <Modal
+            ref="modal"
+            @close="selectedMail = null"
+            :title="
+                !previewContent ? 'Edit Sequence Mail' : 'Preview Sequence Mail'
+            "
+        >
             <Form
-                v-if="selectedMail"
+                v-if="selectedMail && !previewContent"
                 id="sequence-form"
                 @submit.prevent="updateMail(selectedMail)"
             >
@@ -255,10 +269,19 @@ async function removeMail(): Promise<void> {
                     />
                 </FormLayout>
             </Form>
+            <pre v-if="previewContent">{{ previewContent }}</pre>
             <template #actions>
                 <div v-if="selectedMail" class="flex">
                     <div class="flex space-x-2 mb-4 max-w-sm">
-                        <Button> Preview </Button>
+                        <Button v-if="!previewContent" @click="preview">
+                            Preview
+                        </Button>
+                        <Button
+                            v-if="previewContent"
+                            @click="previewContent = null"
+                        >
+                            Close preview
+                        </Button>
                         <Button
                             v-if="selectedMail.status === 'draft'"
                             @click="selectedMail.status = 'published'"

@@ -3,6 +3,7 @@
 use App\Http\Web\Controllers\Mail\Broadcast\BroadcastController;
 use App\Http\Web\Controllers\Mail\Broadcast\PreviewBroadcastController;
 use App\Http\Web\Controllers\Mail\Broadcast\SendBroadcastController;
+use App\Http\Web\Controllers\Mail\Sequence\PreviewSequenceMailController;
 use App\Http\Web\Controllers\Mail\Sequence\PublishSequenceController;
 use App\Http\Web\Controllers\Mail\Sequence\SequenceController;
 use App\Http\Web\Controllers\Mail\Sequence\SequenceMailController;
@@ -35,5 +36,6 @@ Route::resource('sequences', SequenceController::class);
 Route::patch('sequences/{sequence}/publish', PublishSequenceController::class)->name('sequences.publish');
 
 Route::resource('sequences/{sequence}/mails', SequenceMailController::class);
+Route::get('sequences/{sequence}/mails/{mail}/preview', PreviewSequenceMailController::class)->name('sequences.mails.preview');
 
 require __DIR__.'/auth.php';

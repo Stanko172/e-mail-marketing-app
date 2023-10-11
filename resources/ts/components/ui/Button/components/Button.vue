@@ -68,7 +68,7 @@ const classList = computed(() => {
         :disabled="disabled || loading"
         :form="form"
         :type="type"
-        class="focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm text-center"
+        class="focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm text-center whitespace-nowrap"
     >
         <Spinner v-if="loading" class="mx-auto" />
         <slot v-else />

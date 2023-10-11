@@ -2,14 +2,14 @@
 
 namespace Domain\Mail\ViewModels\Sequence;
 
+use Domain\Mail\DataTransferObjects\PerformanceData;
 use Domain\Mail\DataTransferObjects\Sequence\SequenceData;
 use Domain\Mail\DataTransferObjects\Sequence\SequenceMailData;
 use Domain\Mail\Models\Sequence\Sequence;
 use Domain\Shared\ViewModels\Concerns\HasForms;
 use Domain\Shared\ViewModels\Concerns\HasTags;
-use Spatie\ViewModels\ViewModel;
-use Domain\Mail\DataTransferObjects\PerformanceData;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
+use Spatie\ViewModels\ViewModel;
 
 #[TypeScript]
 class EditSequenceContentViewModel extends ViewModel
