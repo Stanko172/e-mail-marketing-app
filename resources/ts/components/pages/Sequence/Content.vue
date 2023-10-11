@@ -76,6 +76,11 @@ async function updateMail(mail: { id: string }): Promise<void> {
 
 const modal = ref<HTMLDialogElement>(null);
 
+function closeModal(): void {
+    modal.value.close();
+    selectedMail.value = null;
+}
+
 const scheduleOptions: SelectOption[] = [
     {
         title: 'Day',
@@ -121,6 +126,8 @@ async function removeMail(): Promise<void> {
     } else {
         selectedMail.value = null;
     }
+
+    closeModal();
 }
 </script>
 
@@ -173,7 +180,7 @@ async function removeMail(): Promise<void> {
             </DataTable>
         </Page>
 
-        <Modal ref="modal" @close="selectedMail = null" title="Edit Sequence">
+        <Modal ref="modal" @close="closeModal" title="Edit Sequence">
             <Form
                 v-if="selectedMail"
                 id="sequence-form"
