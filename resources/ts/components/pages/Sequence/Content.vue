@@ -142,13 +142,10 @@ async function removeMail(): Promise<void> {
                     <PageActionsItem>
                         <Button>See reports</Button>
                     </PageActionsItem>
+                    <PageActionsItem v-if="model.sequence.status === 'draft'">
+                        <Button @click="publish"> Publish </Button>
+                    </PageActionsItem>
                     <PageActionsItem>
-                        <Button
-                            v-if="model.sequence.status === 'draft'"
-                            @click="publish"
-                        >
-                            Publish
-                        </Button>
                         <Button @click="addMail"> Add e-mail </Button>
                     </PageActionsItem>
                 </PageActions>
@@ -179,6 +176,7 @@ async function removeMail(): Promise<void> {
         <Modal ref="modal" @close="selectedMail = null" title="Edit Sequence">
             <Form
                 v-if="selectedMail"
+                id="sequence-form"
                 @submit.prevent="updateMail(selectedMail)"
             >
                 <FormLayout>
@@ -269,7 +267,9 @@ async function removeMail(): Promise<void> {
                         <Button @click="removeMail"> Remove </Button>
                     </div>
                     <div class="ml-auto">
-                        <Button :type="ButtonType.Submit">Submit</Button>
+                        <Button :type="ButtonType.Submit" form="sequence-form">
+                            Submit
+                        </Button>
                     </div>
                 </div>
             </template>

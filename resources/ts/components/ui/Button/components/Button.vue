@@ -6,6 +6,7 @@ import { computed } from 'vue';
 const props = withDefaults(
     defineProps<{
         disabled?: boolean;
+        form?: string;
         loading?: boolean;
         plain?: boolean;
         type?: ButtonType;
@@ -13,6 +14,7 @@ const props = withDefaults(
     }>(),
     {
         disabled: false,
+        form: null,
         loading: false,
         plain: false,
         type: ButtonType.Button,
@@ -64,6 +66,7 @@ const classList = computed(() => {
     <button
         :class="classList"
         :disabled="disabled || loading"
+        :form="form"
         :type="type"
         class="focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm text-center"
     >
