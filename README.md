@@ -70,6 +70,84 @@ someone submits this form, they will be added to your e-mail list.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+### Overview
+
+#### Subscribers
+
+Subscribers represent people in an e-mail list. Usually, a subscriber has an e-mail address
+and other custom fields, like first name, last name, etc. A subscriber can be added to a list
+in several different ways:
+* Manually
+* By submitting a subscription form
+* Via CSV import
+
+Subscribers can also have tags. Tags can be used to filter out people from a particular e-
+mail. Let's say you have an e-mail list that contains people who haven't opened your e-
+mails in the last six months. First, you query them and mark them with an inactive tag. Later, you can write an e-mail where you try to re-
+engage with these people. When you send this e-mail, you want to apply a filter with the inactive tag, so only those subscribers will get it.
+
+#### Broadcasts
+
+Broadcasts are e-mails you want to send one time to a given set of subscribers. First, you
+write the content and save it; after that, you either send it manually or schedule it for a later
+time.
+
+Metrics like these can track the performance of a sent broadcast:
+
+* How many people got the mail.
+* Open rate. How many people opened the mail.
+* Click rate. How many people clicked on a link inside the content (if there's a link).
+
+These rates can be expressed as percentage values, for example:
+
+* 1000 sent mails
+* 49% open rate (490 were opened)
+* 8% click rate (80 were clicked)
+
+#### Sequences
+
+Sequences are one of the most powerful features of ConvertKit. Imagine you want to create
+an e-mail course on Domain-Driven Design. You write eight e-mails with eight different
+concepts and ideas. If you use broadcasts to do this, you get the following results:
+
+* On the 1st of June, you have 1000 subscribers, and you send out the first mail.
+* From the 1st through the 8th of July, you get 100 new subscribers. They haven't
+  received the first mail because they joined your newsletter a few days later.
+* On the 8th of July, you have 1100 subscribers, and you send out the second mail.
+
+The 100 new subscribers never got the first e-mail. They started your course on the 2nd e-
+mail. This is obviously not what we want.
+
+A sequence is a set of e-mails grouped together. Using the DDD e-mail course as an
+example, you can create a sequence like this:
+
+Sequence name: Domain-Driven Design Course:
+
+* 1st e-mail: What Is DDD?
+* 2nd e-mail: Using DTOs
+* 3rd e-mail: The Benefits of Value Objects
+
+We want to send one e-mail per week but only on Wednesday. So we can specify delays
+between each e-mail:
+* 1st e-mail will be sent on the first Wednesday after you publish the sequence.
+* 2nd e-mail will be sent on the 2nd Wednesday.
+* 3rd e-mail will be sent on the 3rd Wednesday.
+
+Each e-mail in the sequence can have custom subscriber filters; each subscriber has a
+different status when consuming a sequence. Let's take a look at an example.
+
+We have the following subscribers:
+
+| Subscriber name  | Tags |
+| ------------- | ------------- |
+| Subscriber 1  | Tag 1  |
+| Subscriber 2  | Tag 2  |
+| Subscriber 3  | Tag 1, Tag 2  |
+| Subscriber 4  | - |
+
+Each e-mail will be sent a week after the previous one. The results will be:
+
+![Sequence e-mails by subscribers](https://iili.io/JFDdRyv.png)
 
 <!-- GETTING STARTED -->
 ## Getting Started
