@@ -140,16 +140,53 @@ We have the following subscribers:
 
 | Subscriber name  | Tags |
 | ------------- | ------------- |
-| Subscriber 1  | Tag 1  |
-| Subscriber 2  | Tag 2  |
-| Subscriber 3  | Tag 1, Tag 2  |
+| Subscriber 1  | Tag 1 |
+| Subscriber 2  | Tag 2 |
+| Subscriber 3  | Tag 1, Tag 2 |
 | Subscriber 4  | - |
 
 Each e-mail will be sent a week after the previous one. The results will be:
 
 ![Sequence e-mails by subscribers](https://iili.io/JFDdRyv.png)
 
-<!-- GETTING STARTED -->
+## User Stories
+
+### Subscribers
+| User story  | Description |
+| ------------- | ------------- |
+| Creating a subscriber  | Needs an API endpoint |
+| Importing subscribers from CSV  | This as an "admin task" so it's gonna be a Console Command. |
+| Filtering subscribers  | It's not really a user story but we need it in multiple places. |
+
+### Broadcasts
+| User story  | Description |
+| ------------- | ------------- |
+| Creating a broadcast  | With filters and content. |
+| Sending a broadcast  | First it filters out the subscribers and then it queues up the e-mails. |
+
+### Sequences
+| User story  | Description |
+| ------------- | ------------- |
+| Creating a sequence  | With basic data such as title |
+| Adding a sequence mail  | With filters and schedule (such as 3 days after the last mail). |
+| Publishing a sequence  | It's just a state transition from draft to published. |
+| Proceeding a sequence  | This will handle all the scheduling logic. It needs to be scheduled to run frequently. It will send the e-mails. |
+
+### Tracking
+| User story  | Description |
+| ------------- | ------------- |
+| Tracking e-mail openings  | It can be a broadcast or a sequence e-mail. Needs an API endpoint. |
+| Tracking link clicks  | First it filters out the subscribers and then it queues up the e-mails. |
+
+### Reports
+| User story  | Description |
+| ------------- | ------------- |
+| Sequence progress  | Such as how many subscribers completed it. |
+| New subscribers  | How many new subscribers are this week, this month, today, or in total |
+| Daily new subscribers  | How many new subscribers we had on a daily basis. |
+| Performance for sent mail  | Performance for a sent mail. |
+| Performance for a whole sequence  | Aggregating the individual e-mails for a whole sequence. |
+
 ## Getting Started
 
 This is an example of how you may give instructions on setting up your project locally.
