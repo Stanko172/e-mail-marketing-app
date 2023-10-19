@@ -225,16 +225,18 @@ _Below is an example of how you can instruct your audience on installing and set
 
 <!-- ROADMAP -->
 ## Roadmap
-
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+- [x] Subscribers domain
+- [x] Broadcasts domain
+- [x] Sequences domain
+- [x] Add factories and seeders 
+- [ ] Add reports
+- [ ] Finish documentation
+- [ ] Add missing backend tests
+- [ ] Add missing frontend tests
+- [ ] CI / CD pipeline
+- [ ] Restructure frontend to be more DDD-ish
+    - [ ] Restructure files
+    - [ ] Simplify views
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
