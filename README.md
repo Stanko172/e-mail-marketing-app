@@ -64,8 +64,9 @@ someone submits this form, they will be added to your e-mail list.
 
 ### Built With
 
-* [![Vue][Vue.js]][Vue-url]
-* [![Laravel][Laravel.com]][Laravel-url]
+* Laravel
+* Vue JS
+* Inertia
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
