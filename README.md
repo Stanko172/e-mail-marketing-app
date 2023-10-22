@@ -19,10 +19,30 @@
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#overview">Overview</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#subscribers">Subscribers</a></li>
+        <li><a href="#broadcasts">Broadcasts</a></li>
+        <li><a href="#sequences">Sequences</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#user-stories">User stories</a>
+      <ul>
+        <li><a href="#subscribers">Subscribers</a></li>
+        <li><a href="#broadcasts">Broadcasts</a></li>
+        <li><a href="#sequences">Sequences</a></li>
+        <li><a href="#tracking">Tracking</a></li>
+        <li><a href="#reports">Reports</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#overview">Data model</a>
+      <ul>
+        <li><a href="#subscribers">Subscribers</a></li>
+        <li><a href="#broadcasts">Broadcasts</a></li>
+        <li><a href="#sentmails">SentMails</a></li>
+        <li><a href="#sequences">Sequences</a></li>
       </ul>
     </li>
     <li><a href="#roadmap">Roadmap</a></li>
@@ -263,19 +283,6 @@ How to store the schedules:
 
 ![Sequence data model](https://iili.io/JKIwBTJ.png)
 
-## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
 ### Installation
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
@@ -305,7 +312,7 @@ _Below is an example of how you can instruct your audience on installing and set
 - [x] Sequences domain
 - [x] Add factories and seeders 
 - [ ] Add reports
-- [ ] Finish documentation
+- [x] Finish documentation
 - [ ] Add missing backend tests
 - [ ] Add missing frontend tests
 - [ ] CI / CD pipeline
@@ -327,8 +334,10 @@ Don't forget to give the project a star! Thanks again!
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+3. Commit your Changes (`git commit -m 'feat: Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
+
+Conventional commits specification: https://www.conventionalcommits.org/en/v1.0.0/
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
