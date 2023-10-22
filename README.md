@@ -285,21 +285,19 @@ How to store the schedules:
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+_Below is an example of how you can instruct your audience on installing and setting up your app.
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+cp .env.example .env
+composer install
+Set up your database
+php artisan migrate
+php artisan db:seed
+php artisan queue:work
+`npm install'
+npm run dev
+Login with demo@email.com and password
+
+For Mac users, follow Valet specification: https://laravel.com/docs/10.x/valet
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
