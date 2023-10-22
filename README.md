@@ -195,7 +195,73 @@ Each e-mail will be sent a week after the previous one. The results will be:
 Subscribers have tags, this a many-to-many relationship, so we need a pivot table (subscriber_tags).
 Subscribers also have a form indicating where they came from. This is a one-to-many relationship.
 
-![Sequence data model](https://iili.io/JKzQQ0F.png)
+![Subscribers data model](https://iili.io/JKzZwmv.png)
+
+### Broadcasts
+
+For a Broadcast we only need to store some basic information like the subject line or the content,
+But, before sending a broadcast we need to filter the subscribers based on the broadcast's filters.
+These filters can be:
+* One or more forms
+* One or more tags
+
+We're gonna use a JSON column inside of the broadcasts table for filters. 
+It will look like this:
+```
+{
+    "form_ids": [1,2,3],
+    "tag_ids": [12,4]
+}
+```
+
+### SentMails
+
+We need to calculate reports like:
+* Total e-mails sent
+* Open rate
+* Click rate
+
+So we need something that represents a "sent e-mail". After sending a broadcast, it will send X e-mails
+and need to create X rows in a table, where X is the number of subscribers. It's also a requirement to track sequence e-mails,
+so we need to do the same with sequence e-mails. We need a table with a polymorph relationship. What does this table represent?
+It stores e-mails that already have been sent, so the table can be called "sent_mails":
+| id  | sendable_id | sendable_type | subscriber_id | sent_at | opened_at | clicked_at |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| 1  | 1 | Broadcast | 101 | 2022-04-22 13:00:00 | 2022-04-22 13:11:00 | 2022-04-22 13:12:00 |
+| 2  | 1 | Broadcast | 129 | 2022-04-22 13:00:00 | 2022-04-22 13:11:00 | - |
+| 3  | 4 | Sequence | 411 | 2022-04-22 13:00:00 | - | - |
+
+Sendable is the name for the morph relationship. The sendable_type will contain the fully-qualified class name of the models.
+The tracking API will update the opened_at and clicked_at columns for a given subscriber and sendable. From this table, we can calculate the reports.
+For example, the performance of the broadcast:
+* Total e-mails sent: 2
+* Open rate: 100%
+* Click rate: 50%
+
+![SentMails data model](https://iili.io/JKIq5MX.png)
+
+### Sequences
+We have a sequence that contains multiple e-mails. Each of those e-mails has some scheduling logic.
+
+We need to handle to different time units when scheduling sequence e-mails:
+* Hours
+* Days
+
+So users can create schedules such as:
+* Five days after the last e-mail
+* Two hours after the previous e-mail
+
+They also want to specify which days the given e-mail can be sent:
+* Five days after the last e-mail, but only on Fridays.
+* Two hours after the last e-mail on any day.
+
+How to store the schedules:
+| delay  | unit | allowed_days |
+| ------------- | ------------- | ------------- |
+| 5  | days | {"monday": false, "tuesday": false, "wednesday": true, "thursday":false, "friday": false, "saturday": false, "sunday": false} |
+| 2  | hours | {"monday": false, "tuesday": false, "wednesday": true, "thursday":false, "friday": false, "saturday": false, "sunday": false} |
+
+![Sequence data model](https://iili.io/JKIwBTJ.png)
 
 ## Getting Started
 
