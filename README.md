@@ -188,6 +188,15 @@ Each e-mail will be sent a week after the previous one. The results will be:
 | Performance for sent mail  | Performance for a sent mail. |
 | Performance for a whole sequence  | Aggregating the individual e-mails for a whole sequence. |
 
+## Data model
+
+### Subscribers
+
+Subscribers have tags, this a many-to-many relationship, so we need a pivot table (subscriber_tags).
+Subscribers also have a form indicating where they came from. This is a one-to-many relationship.
+
+![Sequence data model](https://iili.io/JKzQQ0F.png)
+
 ## Getting Started
 
 This is an example of how you may give instructions on setting up your project locally.
