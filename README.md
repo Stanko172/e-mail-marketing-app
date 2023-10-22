@@ -285,17 +285,18 @@ How to store the schedules:
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app.
+Below is an example of how you can instruct your audience on installing and setting up your app.
 
-cp .env.example .env
-composer install
-Set up your database
-php artisan migrate
-php artisan db:seed
-php artisan queue:work
-`npm install'
-npm run dev
-Login with demo@email.com and password
+* cp .env.example .env
+* composer install
+* Set up your database
+* php artisan migrate
+* php artisan db:seed
+* php artisan serve
+* php artisan queue:work
+* `npm install'
+* npm run dev
+* Login with demo@email.com and password
 
 For Mac users, follow Valet specification: https://laravel.com/docs/10.x/valet
 
